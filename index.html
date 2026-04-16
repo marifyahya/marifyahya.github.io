@@ -207,12 +207,10 @@
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
         <button class="lang-btn" onclick="setLang('id')">ID</button>
       </div>
-      <!-- NEW: Theme Toggle with Icons -->
+      <!-- NEW: Single Theme Toggle Icon -->
       <div class="theme-toggle">
-        <button class="theme-btn" data-theme-value="light" onclick="setTheme('light')" aria-label="Light theme"><i class="fa-solid fa-sun"></i></button>
-        <button class="theme-btn" data-theme-value="dark" onclick="setTheme('dark')" aria-label="Dark theme"><i class="fa-solid fa-moon"></i></button>
-      </div>
-    </div>
+        <button class="theme-btn" id="theme-toggle-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+      </div>    </div>
   </div>
 </nav>
 
@@ -465,20 +463,26 @@
 
   function applyTheme(theme) {
     const htmlEl = document.documentElement;
+    const themeToggleButton = document.getElementById('theme-toggle-btn');
+    const icon = themeToggleButton.querySelector('i');
 
     if (theme === 'dark') {
       htmlEl.setAttribute('data-theme', 'dark');
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
     } else {
       htmlEl.removeAttribute('data-theme'); // Applies light theme
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
     }
-
-    // Update active state of buttons
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-theme-value') === theme);
-    });
+    // No active class on a single button
   }
 
   function setTheme(theme) {
+    // If no theme is passed, toggle the current one
+    if (!theme) {
+      theme = currentTheme === 'dark' ? 'light' : 'dark';
+    }
     currentTheme = theme;
     localStorage.setItem('theme', theme);
     applyTheme(theme);
@@ -488,7 +492,8 @@
   // Apply theme on initial load
   applyTheme(currentTheme);
 
-  // Removed: system theme change listener as 'system' option is no longer available
+  // Attach event listener to the single theme toggle button
+  document.getElementById('theme-toggle-btn').addEventListener('click', () => setTheme());
 </script>
 </body>
 </html>
