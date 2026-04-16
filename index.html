@@ -8,12 +8,28 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{--accent:#3b82f6;--accent-light:#eff6ff;--text:#1e293b;--muted:#64748b;--bg:#ffffff;--bg2:#f8fafc;--border:#e2e8f0;}
+
+  /* Dark theme variables */
+  :root[data-theme="dark"] {
+    --accent:#60a5fa; /* A slightly lighter blue for dark mode contrast */
+    --accent-light:#1e3a8a;
+    --text:#e2e8f0;
+    --muted:#94a3b8;
+    --bg:#1e293b;
+    --bg2:#0f172a;
+    --border:#334155;
+  }
+
   html{scroll-behavior:smooth;}
   body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;}
 
   nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem;}
+  /* Adjust nav background for dark mode */
+  :root[data-theme="dark"] nav {
+    background:rgba(15,23,42,0.92); /* Darker background for nav */
+  }
   .nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
-  .nav-logo{font-weight:700;font-size:1.1rem;color:var(--accent);}
+  .nav-logo{font-weight:700;font-size:1.1rem;color:var(--accent);cursor:pointer;}
   .nav-links{display:flex;gap:1.5rem;list-style:none;}
   .nav-links a{text-decoration:none;color:var(--muted);font-size:.9rem;transition:color .2s;}
   .nav-links a:hover{color:var(--accent);}
@@ -22,6 +38,12 @@
   .lang-toggle{display:flex;gap:.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.2rem;}
   .lang-btn{padding:.25rem .65rem;border-radius:6px;border:none;background:transparent;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
   .lang-btn.active{background:var(--accent);color:#fff;}
+
+  /* Styling for theme toggle */
+  .theme-toggle{display:flex;gap:.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.2rem;}
+  .theme-btn{padding:.25rem .65rem;border-radius:6px;border:none;background:transparent;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+  .theme-btn i{font-size:1.1rem;}
+  .theme-btn.active{background:var(--accent);color:#fff;}
 
   section{padding:80px 2rem;}
   .container{max-width:900px;margin:0 auto;}
@@ -94,7 +116,7 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">&lt;Dev/&gt;</div>
+    <div class="nav-logo" onclick="window.location.href='#hero'">&lt;Dev/&gt;</div>
     <ul class="nav-links">
       <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
       <li><a href="#skills" data-en="Skills" data-id="Keahlian">Skills</a></li>
@@ -106,6 +128,11 @@
       <button class="lang-btn active" onclick="setLang('en')">EN</button>
       <button class="lang-btn" onclick="setLang('id')">ID</button>
     </div>
+    <!-- NEW: Theme Toggle with Icons -->
+    <div class="theme-toggle">
+      <button class="theme-btn" data-theme-value="light" onclick="setTheme('light')" aria-label="Light theme"><i class="fa-solid fa-sun"></i></button>
+      <button class="theme-btn" data-theme-value="dark" onclick="setTheme('dark')" aria-label="Dark theme"><i class="fa-solid fa-moon"></i></button>
+    </div>
   </div>
 </nav>
 
@@ -115,7 +142,7 @@
     <div class="hero-inner fade">
       <div class="hero-avatar"><i class="fa-solid fa-user"></i></div>
       <div class="hero-text">
-        <h1><span data-en="Hi, I'm Your Name 👋" data-id="Halo, Saya Arif Yahya 👋">Hi, I'm Arif Yahya 👋</span></h1>
+        <h1><span data-en="Hi, I'm Arif Yahya 👋" data-id="Halo, Saya Arif Yahya 👋">Hi, I'm Arif Yahya 👋</span></h1>
         <p class="hero-sub" data-en="Back End Developer · PHP Laravel · Microservices" data-id="Back End Developer · PHP Laravel · Microservices">Back End Developer · PHP Laravel · Microservices</p>
         <p class="hero-loc"><i class="fa-solid fa-location-dot"></i>Bandung, Indonesia</p>
         <div class="btn-group">
@@ -308,6 +335,35 @@
     });
     document.documentElement.lang = lang === 'id' ? 'id' : 'en';
   }
+
+  // NEW: Theme Toggle Logic (modified for light/dark only, default dark)
+  let currentTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
+
+  function applyTheme(theme) {
+    const htmlEl = document.documentElement;
+
+    if (theme === 'dark') {
+      htmlEl.setAttribute('data-theme', 'dark');
+    } else {
+      htmlEl.removeAttribute('data-theme'); // Applies light theme
+    }
+
+    // Update active state of buttons
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-theme-value') === theme);
+    });
+  }
+
+  function setTheme(theme) {
+    currentTheme = theme;
+    localStorage.setItem('theme', theme);
+    applyTheme(theme);
+  }
+
+  // Apply theme on initial load
+  applyTheme(currentTheme);
+
+  // Removed: system theme change listener as 'system' option is no longer available
 </script>
 </body>
 </html>
