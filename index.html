@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio - Back End Developer</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--accent:#3b82f6;--accent-light:#eff6ff;--text:#1e293b;--muted:#64748b;--bg:#ffffff;--bg2:#f8fafc;--border:#e2e8f0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;}
+
+  nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:100;padding:0 2rem;}
+  .nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .nav-logo{font-weight:700;font-size:1.1rem;color:var(--accent);}
+  .nav-links{display:flex;gap:1.5rem;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:.9rem;transition:color .2s;}
+  .nav-links a:hover{color:var(--accent);}
+
+  /* LANG TOGGLE */
+  .lang-toggle{display:flex;gap:.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.2rem;}
+  .lang-btn{padding:.25rem .65rem;border-radius:6px;border:none;background:transparent;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+  .lang-btn.active{background:var(--accent);color:#fff;}
+
+  section{padding:80px 2rem;}
+  .container{max-width:900px;margin:0 auto;}
+  .section-title{font-size:1.6rem;font-weight:700;margin-bottom:.4rem;}
+  .section-line{width:40px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:2.5rem;}
+
+  #hero{min-height:100vh;display:flex;align-items:center;}
+  .hero-inner{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;}
+  .hero-avatar{width:140px;height:140px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:var(--accent);flex-shrink:0;border:3px solid var(--border);}
+  .hero-text h1{font-size:2.2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem;}
+  .hero-text h1 span{color:var(--accent);}
+  .hero-sub{color:var(--muted);font-size:1rem;margin-bottom:.4rem;}
+  .hero-loc{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem;}
+  .hero-loc i{color:var(--accent);margin-right:.3rem;}
+  .btn-group{display:flex;gap:.8rem;flex-wrap:wrap;}
+  .btn{padding:.65rem 1.4rem;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#2563eb;}
+  .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);}
+  .btn-outline:hover{background:var(--accent-light);}
+
+  #about{background:var(--bg2);}
+  .about-text{color:var(--muted);font-size:1rem;max-width:700px;line-height:1.85;}
+
+  #skills{background:var(--bg);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem;}
+  .skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:transform .2s,border-color .2s;}
+  .skill-card:hover{transform:translateY(-3px);border-color:var(--accent);}
+  .skill-card i{font-size:1.8rem;color:var(--accent);}
+  .skill-card span{font-size:.82rem;font-weight:600;color:var(--text);text-align:center;}
+
+  #experience{background:var(--bg2);}
+  .exp-list{display:flex;flex-direction:column;gap:1.5rem;}
+  .exp-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:box-shadow .2s;}
+  .exp-card:hover{box-shadow:0 4px 20px rgba(59,130,246,.1);}
+  .exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.3rem;}
+  .exp-title{font-weight:700;font-size:1.05rem;}
+  .exp-company{color:var(--accent);font-weight:600;font-size:.92rem;margin-bottom:.2rem;}
+  .exp-loc{color:var(--muted);font-size:.82rem;margin-bottom:.5rem;}
+  .exp-loc i{margin-right:.3rem;}
+  .exp-year{background:var(--accent-light);color:var(--accent);font-size:.78rem;font-weight:600;padding:.25rem .7rem;border-radius:20px;white-space:nowrap;height:fit-content;}
+  .exp-duties{list-style:none;margin-top:.6rem;display:flex;flex-direction:column;gap:.4rem;}
+  .exp-duties li{color:var(--muted);font-size:.88rem;line-height:1.6;padding-left:1.1rem;position:relative;}
+  .exp-duties li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.1rem;}
+  .exp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
+  .tag{background:var(--bg2);border:1px solid var(--border);font-size:.75rem;padding:.2rem .6rem;border-radius:6px;color:var(--muted);}
+
+  #education{background:var(--bg);}
+  .edu-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;}
+  .edu-icon{width:46px;height:46px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.3rem;flex-shrink:0;}
+  .edu-school{font-weight:700;font-size:1rem;}
+  .edu-degree{color:var(--muted);font-size:.9rem;margin:.2rem 0;}
+  .edu-info{color:var(--muted);font-size:.82rem;}
+
+  #contact{background:var(--bg2);}
+  .contact-links{display:flex;flex-wrap:wrap;gap:1rem;}
+  .contact-item{display:flex;align-items:center;gap:.6rem;padding:.8rem 1.2rem;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.9rem;font-weight:500;transition:all .2s;background:var(--bg);}
+  .contact-item:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+  .contact-item i{font-size:1.1rem;color:var(--accent);}
+
+  footer{text-align:center;padding:1.5rem;font-size:.85rem;color:var(--muted);border-top:1px solid var(--border);}
+
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease;}
+  .fade.show{opacity:1;transform:none;}
+
+  [data-en],[data-id]{transition:opacity .15s;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">&lt;Dev/&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
+      <li><a href="#skills" data-en="Skills" data-id="Keahlian">Skills</a></li>
+      <li><a href="#experience" data-en="Experience" data-id="Pengalaman">Experience</a></li>
+      <li><a href="#education" data-en="Education" data-id="Pendidikan">Education</a></li>
+      <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('id')">ID</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner fade">
+      <div class="hero-avatar"><i class="fa-solid fa-user"></i></div>
+      <div class="hero-text">
+        <h1><span data-en="Hi, I'm Your Name 👋" data-id="Halo, Saya Arif Yahya 👋">Hi, I'm Arif Yahya 👋</span></h1>
+        <p class="hero-sub" data-en="Back End Developer · PHP Laravel · Microservices" data-id="Back End Developer · PHP Laravel · Microservices">Back End Developer · PHP Laravel · Microservices</p>
+        <p class="hero-loc"><i class="fa-solid fa-location-dot"></i>Bandung, Indonesia</p>
+        <div class="btn-group">
+          <a href="#experience" class="btn btn-primary" data-en="View Experience" data-id="Lihat Pengalaman">View Experience</a>
+          <a href="#contact" class="btn btn-outline" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container fade">
+    <div class="section-title" data-en="About Me" data-id="Tentang Saya">About Me</div>
+    <div class="section-line"></div>
+    <p class="about-text" data-en="I'm a Back End Developer with over 6 years of experience building and maintaining scalable web applications. I specialize in PHP and the Laravel framework within microservices architectures. I enjoy writing clean, well-tested code and collaborating closely with product, QA, and design teams to deliver quality software." data-id="Saya adalah seorang Back End Developer dengan pengalaman lebih dari 6 tahun dalam membangun dan memelihara aplikasi web yang skalabel. Saya mengkhususkan diri dalam PHP dan framework Laravel pada arsitektur microservices. Saya senang menulis kode yang bersih dan terstruktur, serta berkolaborasi erat dengan tim produk, QA, dan desain untuk menghasilkan perangkat lunak berkualitas.">
+      I'm a Back End Developer with over 6 years of experience building and maintaining scalable web applications. I specialize in PHP and the Laravel framework within microservices architectures. I enjoy writing clean, well-tested code and collaborating closely with product, QA, and design teams to deliver quality software.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container fade">
+    <div class="section-title" data-en="Skills" data-id="Keahlian">Skills</div>
+    <div class="section-line"></div>
+    <div class="skills-grid">
+      <div class="skill-card"><i class="fa-brands fa-php"></i><span>PHP Laravel</span></div>
+      <div class="skill-card"><i class="fa-solid fa-database"></i><span>MySQL</span></div>
+      <div class="skill-card"><i class="fa-solid fa-database"></i><span>PostgreSQL</span></div>
+      <div class="skill-card"><i class="fa-solid fa-bolt"></i><span>Redis</span></div>
+      <div class="skill-card"><i class="fa-brands fa-aws"></i><span>AWS</span></div>
+      <div class="skill-card"><i class="fa-brands fa-python"></i><span>Python</span></div>
+      <div class="skill-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+      <div class="skill-card"><i class="fa-brands fa-html5"></i><span>HTML & CSS</span></div>
+      <div class="skill-card"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+      <div class="skill-card"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+      <div class="skill-card"><i class="fa-solid fa-server"></i><span>Nginx</span></div>
+      <div class="skill-card"><i class="fa-solid fa-cubes"></i><span>Microservices</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container fade">
+    <div class="section-title" data-en="Work Experience" data-id="Pengalaman Kerja">Work Experience</div>
+    <div class="section-line"></div>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Back End Developer" data-id="Back End Developer">Back End Developer</div>
+            <div class="exp-company">PT Gajicermat Mandiri Digital Indonesia</div>
+            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Bandung</div>
+          </div>
+          <div class="exp-year" data-en="June 2022 – Present" data-id="Juni 2022 – Sekarang">June 2022 – Present</div>
+        </div>
+        <ul class="exp-duties">
+          <li data-en="Collaborated using Agile methodologies with task tracking in Jira." data-id="Berkolaborasi menggunakan metodologi Agile dengan pelacakan tugas di Jira.">Collaborated using Agile methodologies with task tracking in Jira.</li>
+          <li data-en="Participated in Scrum grooming meetings to refine and prioritize tasks." data-id="Mengikuti rapat Scrum grooming untuk menyempurnakan dan memprioritaskan tugas.">Participated in Scrum grooming meetings to refine and prioritize tasks.</li>
+          <li data-en="Translated PRDs into detailed Jira tickets." data-id="Menerjemahkan PRD menjadi tiket Jira yang terperinci.">Translated PRDs into detailed Jira tickets.</li>
+          <li data-en="Developed and maintained RESTful APIs using PHP and Laravel within a microservices architecture." data-id="Mengembangkan dan memelihara RESTful API menggunakan PHP dan Laravel dalam arsitektur microservices.">Developed and maintained RESTful APIs using PHP and Laravel within a microservices architecture.</li>
+          <li data-en="Designed and implemented new services, and enhanced or debugged existing ones." data-id="Merancang dan mengimplementasikan layanan baru serta meningkatkan atau memperbaiki yang sudah ada.">Designed and implemented new services, and enhanced or debugged existing ones.</li>
+          <li data-en="Wrote unit tests to meet predetermined coverage standards." data-id="Menulis unit test untuk memenuhi standar coverage yang telah ditetapkan.">Wrote unit tests to meet predetermined coverage standards.</li>
+          <li data-en="Created API documentation using Swagger for clear communication and integration." data-id="Membuat dokumentasi API menggunakan Swagger untuk komunikasi dan integrasi yang jelas.">Created API documentation using Swagger for clear communication and integration.</li>
+          <li data-en="Assisted the QA team throughout the testing process." data-id="Membantu tim QA selama proses pengujian berlangsung.">Assisted the QA team throughout the testing process.</li>
+          <li data-en="Supported the product team by reviewing designs and Confluence documents before development." data-id="Mendukung tim produk dengan meninjau desain dan dokumen Confluence sebelum pengembangan.">Supported the product team by reviewing designs and Confluence documents before development.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Microservices</span><span class="tag">REST API</span><span class="tag">Swagger</span><span class="tag">Jira</span><span class="tag">Scrum</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Freelance Back End Developer" data-id="Freelance Back End Developer">Freelance Back End Developer</div>
+            <div class="exp-company">AELITE</div>
+            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
+          </div>
+          <div class="exp-year" data-en="Nov 2020 – Sep 2021" data-id="Nov 2020 – Sep 2021">Nov 2020 – Sep 2021</div>
+        </div>
+        <ul class="exp-duties">
+          <li data-en="Contributed to the design of business flows and database architecture." data-id="Berkontribusi dalam perancangan alur bisnis dan arsitektur database.">Contributed to the design of business flows and database architecture.</li>
+          <li data-en="Implemented REST APIs using the Laravel framework." data-id="Mengimplementasikan REST API menggunakan framework Laravel.">Implemented REST APIs using the Laravel framework.</li>
+          <li data-en="Integrated payment gateway for transactions." data-id="Mengintegrasikan payment gateway untuk transaksi.">Integrated payment gateway for transactions.</li>
+          <li data-en="Developed a web dashboard application for management and control." data-id="Mengembangkan aplikasi web dashboard untuk manajemen dan kontrol.">Developed a web dashboard application for management and control.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Laravel</span><span class="tag">REST API</span><span class="tag">Payment Gateway</span><span class="tag">Dashboard</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Full Stack Developer" data-id="Full Stack Developer">Full Stack Developer</div>
+            <div class="exp-company">PT Toyamilindo</div>
+            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
+          </div>
+          <div class="exp-year" data-en="Dec 2018 – May 2020" data-id="Des 2018 – Mei 2020">Dec 2018 – May 2020</div>
+        </div>
+        <ul class="exp-duties">
+          <li data-en="Migrated legacy PHP Native applications to the Laravel framework and created new applications from scratch." data-id="Migrasi aplikasi PHP Native lama ke framework Laravel dan membuat aplikasi baru dari awal.">Migrated legacy PHP Native applications to the Laravel framework and created new applications from scratch.</li>
+          <li data-en="Developed new applications and worked on fixing or enhancing existing ones." data-id="Mengembangkan aplikasi baru serta memperbaiki dan meningkatkan yang sudah ada.">Developed new applications and worked on fixing or enhancing existing ones.</li>
+          <li data-en="Implemented payment gateway integration in applications." data-id="Mengimplementasikan integrasi payment gateway pada aplikasi.">Implemented payment gateway integration in applications.</li>
+          <li data-en="Collaborated with the Marketing Division to support their operations." data-id="Berkolaborasi dengan Divisi Marketing untuk mendukung operasional mereka.">Collaborated with the Marketing Division to support their operations.</li>
+          <li data-en="Automated daily sales report generation and delivery via email." data-id="Mengotomatiskan pembuatan dan pengiriman laporan penjualan harian melalui email.">Automated daily sales report generation and delivery via email.</li>
+          <li data-en="Assisted in deploying applications to production." data-id="Membantu proses deployment aplikasi ke production.">Assisted in deploying applications to production.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Full Stack</span><span class="tag">Payment Gateway</span><span class="tag">Automation</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="IT Support" data-id="IT Support">IT Support</div>
+            <div class="exp-company">CRONOS ERP</div>
+            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
+          </div>
+          <div class="exp-year" data-en="Dec 2017 – Aug 2018" data-id="Des 2017 – Agu 2018">Dec 2017 – Aug 2018</div>
+        </div>
+        <ul class="exp-duties">
+          <li data-en="Introduced the application to users and guided them in using it." data-id="Memperkenalkan aplikasi kepada pengguna dan membimbing mereka dalam penggunaannya.">Introduced the application to users and guided them in using it.</li>
+          <li data-en="Collected user feedback and reported it to the development manager." data-id="Mengumpulkan feedback pengguna dan melaporkannya kepada manajer pengembangan.">Collected user feedback and reported it to the development manager.</li>
+          <li data-en="Troubleshot application issues on-site." data-id="Menyelesaikan masalah aplikasi langsung di lokasi.">Troubleshot application issues on-site.</li>
+          <li data-en="Created user guides and documentation for application usage." data-id="Membuat panduan pengguna dan dokumentasi untuk penggunaan aplikasi.">Created user guides and documentation for application usage.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">ERP</span><span class="tag">IT Support</span><span class="tag">Documentation</span><span class="tag">User Training</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container fade">
+    <div class="section-title" data-en="Education" data-id="Pendidikan">Education</div>
+    <div class="section-line"></div>
+    <div class="edu-card">
+      <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div>
+        <div class="edu-school">STMIK IKMI CIREBON</div>
+        <div class="edu-degree" data-en="Bachelor of Informatics Engineering" data-id="Sarjana Teknik Informatika">Bachelor of Informatics Engineering</div>
+        <div class="edu-info" data-en="Graduated February 2021 · Cirebon, Indonesia" data-id="Lulus Februari 2021 · Cirebon, Indonesia">Graduated February 2021 · Cirebon, Indonesia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container fade">
+    <div class="section-title" data-en="Contact" data-id="Kontak">Contact</div>
+    <div class="section-line"></div>
+    <div class="contact-links">
+      <a href="mailto:email@example.com" class="contact-item"><i class="fa-solid fa-envelope"></i> email@example.com</a>
+      <a href="https://github.com/" target="_blank" class="contact-item"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://linkedin.com/" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Your Name · <span data-en="Built with" data-id="Dibuat dengan">Built with</span> ❤️</footer>
+
+<script>
+  // Scroll fade
+  const els = document.querySelectorAll('.fade');
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('show');obs.unobserve(x.target);}}),{threshold:.12});
+  els.forEach(el => obs.observe(el));
+  document.querySelector('#hero .fade').classList.add('show');
+
+  // Language toggle
+  let curLang = 'en';
+  function setLang(lang) {
+    curLang = lang;
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+  }
+</script>
+</body>
+</html>
