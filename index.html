@@ -127,7 +127,13 @@
   .hero-avatar{width:140px;height:140px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:var(--accent);flex-shrink:0;border:3px solid var(--border);}
   .hero-text h1{font-size:2.2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem;}
   .hero-text h1 span{color:var(--accent);}
-  .hero-sub{color:var(--muted);font-size:1rem;margin-bottom:.4rem;}
+  .hero-sub{color:var(--accent);font-size:1rem;font-weight:700;margin-bottom:.4rem;}
+  .hero-desc{color:var(--muted);font-size:.95rem;margin-bottom:.4rem;}
+  .hero-skills{display:flex;gap:1rem;margin-bottom:.8rem;font-size:1.4rem;}
+  .hero-skills i{color:var(--accent);transition:transform .2s;cursor:pointer;position:relative;}
+  .hero-skills i:hover{transform:translateY(-3px);}
+  .hero-skills i::after{content:attr(data-tooltip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);font-size:.7rem;padding:.3rem .5rem;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;margin-bottom:5px;}
+  .hero-skills i:hover::after{opacity:1;}
   .hero-loc{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem;}
   .hero-loc i{color:var(--accent);margin-right:.3rem;}
   .btn-group{display:flex;gap:.8rem;flex-wrap:wrap;}
@@ -185,6 +191,19 @@
   .fade.show{opacity:1;transform:none;}
 
   [data-en],[data-id]{transition:opacity .15s;}
+
+  .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center;z-index:1000;}
+  .modal-overlay.show{display:flex;}
+  .modal{background:var(--bg);border-radius:14px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+  .modal-icon{font-size:3rem;color:var(--accent);margin-bottom:1rem;}
+  .modal h3{font-size:1.2rem;margin-bottom:.5rem;}
+  .modal p{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;line-height:1.6;}
+  .modal-buttons{display:flex;gap:.8rem;justify-content:center;}
+  .modal .btn{padding:.65rem 1.4rem;border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none;}
+  .modal .btn-primary{background:var(--accent);color:#fff;}
+  .modal .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);}
+  .modal .btn:hover{opacity:.9;}
+  .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);}
 </style>
 </head>
 <body>
@@ -221,10 +240,21 @@
       <div class="hero-avatar"><i class="fa-solid fa-user"></i></div>
       <div class="hero-text">
         <h1><span data-en="Hi, I'm Moh. Arif Yahya 👋" data-id="Halo, Saya Moh. Arif Yahya 👋">Hi, I'm Moh. Arif Yahya 👋</span></h1>
-        <p class="hero-sub" data-en="Back End Developer · PHP Laravel · Microservices" data-id="Back End Developer · PHP Laravel · Microservices">Back End Developer · PHP Laravel · Microservices</p>
+        <p class="hero-sub" data-en="Experienced Back-End Developer" data-id="Back-End Developer Berpengalaman">Experienced Back-End Developer</p>
+        <p class="hero-desc" data-en="Microservices • 5+ years experience in building scalable APIs." data-id="Microservices • Pengalaman 5+ tahun dalam membangun API yang scalable.">Microservices • 5+ years experience in building scalable APIs.</p>
+        <div class="hero-skills">
+          <i class="fa-brands fa-php" data-tooltip="PHP"></i>
+          <i class="fa-brands fa-laravel" data-tooltip="Laravel"></i>
+          <i class="fa-solid fa-cubes" data-tooltip="Microservices"></i>
+          <i class="fa-solid fa-database" data-tooltip="MySQL, PostgreSQL, MongoDB"></i>
+          <i class="fa-solid fa-server" data-tooltip="REST API"></i>
+          <i class="fa-brands fa-docker" data-tooltip="Docker"></i>
+          <i class="fa-brands fa-aws" data-tooltip="AWS"></i>
+        </div>
         <p class="hero-loc"><i class="fa-solid fa-location-dot"></i>Bandung, Indonesia</p>
         <div class="btn-group">
-          <a href="#experience" class="btn btn-primary" data-en="View Experience" data-id="Lihat Pengalaman">View Experience</a>
+          <a href="#" id="cv-download" class="btn btn-primary" onclick="openDownloadModal(event)" data-en="Download Resume" data-id="Unduh Resume">Download Resume</a>
+          <a href="#experience" class="btn btn-outline" data-en="View Experience" data-id="Lihat Pengalaman">View Experience</a>
           <a href="#contact" class="btn btn-outline" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</a>
         </div>
       </div>
@@ -365,7 +395,7 @@
         <div class="exp-header">
           <div>
             <div class="exp-title" data-en="IT Support" data-id="IT Support">IT Support</div>
-            <div class="exp-company">ERP CRONOS</div>
+            <div class="exp-company">CRONOS ERP</div>
             <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
           </div>
           <div class="exp-year" data-en="Dec 2017 – Aug 2018" data-id="Des 2017 – Agu 2018">Dec 2017 – Aug 2018</div>
@@ -406,14 +436,26 @@
     <div class="section-title" data-en="Contact" data-id="Kontak">Contact</div>
     <div class="section-line"></div>
     <div class="contact-links">
-      <a href="mailto:email@example.com" class="contact-item"><i class="fa-solid fa-envelope"></i> email@example.com</a>
-      <a href="https://github.com/" target="_blank" class="contact-item"><i class="fa-brands fa-github"></i> GitHub</a>
-      <a href="https://linkedin.com/" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="mailto:maarifyahya@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i> maarifyahya@gmail.com</a>
+      <a href="https://github.com/marifyahya" target="_blank" class="contact-item"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://id.linkedin.com/in/marifyahya" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
     </div>
   </div>
 </section>
 
 <footer>© 2026 Moh. Arif Yahya · <span data-en="Built with" data-id="Dibuat dengan">Built with</span> ❤️</footer>
+
+<div class="modal-overlay" id="downloadModal">
+  <div class="modal" style="position:relative;">
+    <div class="modal-icon"><i class="fa-solid fa-file-pdf"></i></div>
+    <h3 data-en="Save as PDF" data-id="Simpan sebagai PDF">Save as PDF</h3>
+    <p data-en="Click 'Download' to open the resume, then press Ctrl+P (or Cmd+P) and select 'Save as PDF' to save it." data-id="Klik 'Unduh' untuk membuka resume, lalu tekan Ctrl+P (atau Cmd+P) dan pilih 'Simpan sebagai PDF'.">Click 'Download' to open the resume, then press Ctrl+P (or Cmd+P) and select 'Save as PDF' to save it.</p>
+    <div class="modal-buttons">
+      <a href="#" id="modal-download" class="btn btn-primary" download data-en="Download" data-id="Unduh">Download</a>
+      <button class="btn btn-outline" onclick="closeDownloadModal()" data-en="Cancel" data-id="Batal">Cancel</button>
+    </div>
+  </div>
+</div>
 
 <script>
   // Scroll fade
@@ -423,9 +465,10 @@
   document.querySelector('#hero .fade').classList.add('show');
 
   // Language toggle
-  let curLang = 'en';
+  let curLang = localStorage.getItem('lang') || 'en';
   function setLang(lang) {
     curLang = lang;
+    localStorage.setItem('lang', lang);
     document.querySelectorAll('[data-en]').forEach(el => {
       el.innerHTML = el.getAttribute('data-' + lang);
     });
@@ -433,8 +476,28 @@
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
     document.documentElement.setAttribute('data-lang', lang);
+    document.getElementById('cv-download').href = '#';
+    document.getElementById('modal-download').href = 'cv-ats-' + lang + '.html';
     closeMenu(); // Close menu after language change
   }
+  setLang(curLang);
+
+  // Download Modal
+  function openDownloadModal(e) {
+    e.preventDefault();
+    const lang = document.documentElement.getAttribute('data-lang') || 'en';
+    document.getElementById('modal-download').href = 'cv-ats-' + lang + '.html';
+    document.getElementById('downloadModal').classList.add('show');
+  }
+
+  function closeDownloadModal() {
+    document.getElementById('downloadModal').classList.remove('show');
+  }
+
+  // Close modal on overlay click
+  document.getElementById('downloadModal').addEventListener('click', function(e) {
+    if (e.target === this) closeDownloadModal();
+  });
 
   // Toggle mobile menu
   function toggleMenu() {
