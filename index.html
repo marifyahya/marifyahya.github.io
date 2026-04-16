@@ -34,6 +34,73 @@
   .nav-links a{text-decoration:none;color:var(--muted);font-size:.9rem;transition:color .2s;}
   .nav-links a:hover{color:var(--accent);}
 
+  /* Responsive Navigation */
+  .hamburger-menu {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .nav-items-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: block; /* Show hamburger on small screens */
+    }
+
+    .nav-inner {
+      justify-content: space-between;
+    }
+
+    .nav-items-wrapper {
+      display: none; /* Hide nav items by default */
+      position: absolute;
+      top: 60px; /* Below the nav bar */
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-items-wrapper.active {
+      display: flex; /* Show when active */
+    }
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .nav-links li {
+      width: 100%;
+      text-align: center;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .lang-toggle,
+    .theme-toggle {
+      margin-top: 1rem;
+    }
+  }
+
   /* LANG TOGGLE */
   .lang-toggle{display:flex;gap:.3rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.2rem;}
   .lang-btn{padding:.25rem .65rem;border-radius:6px;border:none;background:transparent;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
@@ -117,21 +184,26 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-logo" onclick="window.location.href='#hero'">&lt;Dev/&gt;</div>
-    <ul class="nav-links">
-      <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
-      <li><a href="#skills" data-en="Skills" data-id="Keahlian">Skills</a></li>
-      <li><a href="#experience" data-en="Experience" data-id="Pengalaman">Experience</a></li>
-      <li><a href="#education" data-en="Education" data-id="Pendidikan">Education</a></li>
-      <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
-    </ul>
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('id')">ID</button>
-    </div>
-    <!-- NEW: Theme Toggle with Icons -->
-    <div class="theme-toggle">
-      <button class="theme-btn" data-theme-value="light" onclick="setTheme('light')" aria-label="Light theme"><i class="fa-solid fa-sun"></i></button>
-      <button class="theme-btn" data-theme-value="dark" onclick="setTheme('dark')" aria-label="Dark theme"><i class="fa-solid fa-moon"></i></button>
+    <button class="hamburger-menu" aria-label="Toggle navigation" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="nav-items-wrapper">
+      <ul class="nav-links">
+        <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
+        <li><a href="#skills" data-en="Skills" data-id="Keahlian">Skills</a></li>
+        <li><a href="#experience" data-en="Experience" data-id="Pengalaman">Experience</a></li>
+        <li><a href="#education" data-en="Education" data-id="Pendidikan">Education</a></li>
+        <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('id')">ID</button>
+      </div>
+      <!-- NEW: Theme Toggle with Icons -->
+      <div class="theme-toggle">
+        <button class="theme-btn" data-theme-value="light" onclick="setTheme('light')" aria-label="Light theme"><i class="fa-solid fa-sun"></i></button>
+        <button class="theme-btn" data-theme-value="dark" onclick="setTheme('dark')" aria-label="Dark theme"><i class="fa-solid fa-moon"></i></button>
+      </div>
     </div>
   </div>
 </nav>
@@ -334,6 +406,12 @@
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
     document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+  }
+
+  // Toggle mobile menu
+  function toggleMenu() {
+    const navItems = document.querySelector('.nav-items-wrapper');
+    navItems.classList.toggle('active');
   }
 
   // NEW: Theme Toggle Logic (modified for light/dark only, default dark)
