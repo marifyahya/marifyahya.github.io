@@ -60,7 +60,10 @@
     }
 
     .nav-items-wrapper {
-      display: none; /* Hide nav items by default */
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
       position: absolute;
       top: 60px; /* Below the nav bar */
       left: 0;
@@ -68,12 +71,14 @@
       flex-direction: column;
       background: var(--bg);
       border-top: 1px solid var(--border);
-      padding: 1rem 0;
+      padding: 0; /* Will be applied when active */
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     .nav-items-wrapper.active {
-      display: flex; /* Show when active */
+      max-height: 500px; /* Or a sufficiently large value */
+      opacity: 1;
+      padding: 1rem 0;
     }
 
     .nav-links {
@@ -386,7 +391,7 @@
   </div>
 </section>
 
-<footer>© 2026 Your Name · <span data-en="Built with" data-id="Dibuat dengan">Built with</span> ❤️</footer>
+<footer>© 2026 Arif Yahya · <span data-en="Built with" data-id="Dibuat dengan">Built with</span> ❤️</footer>
 
 <script>
   // Scroll fade
@@ -406,6 +411,7 @@
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
     document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+    closeMenu(); // Close menu after language change
   }
 
   // Toggle mobile menu
@@ -413,6 +419,19 @@
     const navItems = document.querySelector('.nav-items-wrapper');
     navItems.classList.toggle('active');
   }
+
+  // Helper to close the mobile menu
+  function closeMenu() {
+    const navItems = document.querySelector('.nav-items-wrapper');
+    if (navItems.classList.contains('active')) {
+      navItems.classList.remove('active');
+    }
+  }
+
+  // Add event listeners to nav links to close menu on click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 
   // NEW: Theme Toggle Logic (modified for light/dark only, default dark)
   let currentTheme = localStorage.getItem('theme') || 'dark'; // Default to dark
@@ -436,6 +455,7 @@
     currentTheme = theme;
     localStorage.setItem('theme', theme);
     applyTheme(theme);
+    closeMenu(); // Close menu after theme change
   }
 
   // Apply theme on initial load
