@@ -452,8 +452,15 @@
   document.querySelector('#hero .fade').classList.add('show');
 
   // Scroll to top button
+  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300);
+    const currentScroll = window.scrollY;
+    if (currentScroll > 300 && currentScroll < lastScroll) {
+      document.getElementById('scrollTop').classList.add('show');
+    } else if (currentScroll >= lastScroll || currentScroll < 300) {
+      document.getElementById('scrollTop').classList.remove('show');
+    }
+    lastScroll = currentScroll;
   });
 
   // Language toggle
