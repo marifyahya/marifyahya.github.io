@@ -484,16 +484,31 @@
   // Toggle mobile menu
   function toggleMenu() {
     const navItems = document.querySelector('.nav-items-wrapper');
+    const hamburgerIcon = document.querySelector('.hamburger-menu i');
     navItems.classList.toggle('active');
+    hamburgerIcon.classList.toggle('fa-bars');
+    hamburgerIcon.classList.toggle('fa-xmark');
   }
 
   // Helper to close the mobile menu
   function closeMenu() {
     const navItems = document.querySelector('.nav-items-wrapper');
+    const hamburgerIcon = document.querySelector('.hamburger-menu i');
     if (navItems.classList.contains('active')) {
       navItems.classList.remove('active');
+      hamburgerIcon.classList.remove('fa-xmark');
+      hamburgerIcon.classList.add('fa-bars');
     }
   }
+
+  // Close menu when clicking outside (body)
+  document.addEventListener('click', (e) => {
+    const navItems = document.querySelector('.nav-items-wrapper');
+    const hamburgerBtn = document.querySelector('.hamburger-menu');
+    if (navItems.classList.contains('active') && !navItems.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+      closeMenu();
+    }
+  });
 
   // Add event listeners to nav links to close menu on click
   document.querySelectorAll('.nav-links a').forEach(link => {
