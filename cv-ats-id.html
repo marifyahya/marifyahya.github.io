@@ -137,6 +137,13 @@
   <span class="skill-tag">Git</span>
 </div>
 
-<script>window.onload = function() { window.print(); };</script>
+<script>
+window.onload = function() { 
+  window.print(); 
+};
+window.onafterprint = function() { 
+  window.location.href = 'index.html'; 
+};
+</script>
 </body>
 </html>
