@@ -67,7 +67,7 @@ const translations = {
         duties: [
           {
             en: "<b>API &amp; Microservices:</b> Developed and maintained robust RESTful APIs using PHP and Laravel within a microservices architecture to ensure high system scalability.",
-            id: "<b>API &amp; Microservices:</b> Mengembangkan dan memelihara RESTful API yang kuat menggunakan PHP dan Laravel dalam arsitektur microservices untuk确保 skalabilitas sistem yang tinggi.",
+            id: "<b>API &amp; Microservices:</b> Mengembangkan dan memelihara RESTful API yang kuat menggunakan PHP dan Laravel dalam arsitektur microservices untuk memastikan skalabilitas sistem yang tinggi.",
           },
           {
             en: "<b>System Engineering:</b> Designed and implemented new backend services while debugging and enhancing existing ones to improve system performance.",
