@@ -7,9 +7,9 @@ const obs = new IntersectionObserver(
         obs.unobserve(x.target);
       }
     }),
-  { threshold: 0.12 }
+  { threshold: 0.12 },
 );
-els.forEach(el => obs.observe(el));
+els.forEach((el) => obs.observe(el));
 document.querySelector("#hero .fade").classList.add("show");
 
 let lastScroll = 0;
@@ -33,7 +33,11 @@ function t(key) {
     value = value[k];
   }
   if (value === undefined || value === null) return key;
-  if (typeof value === "object" && value !== null && (value.en !== undefined || value.id !== undefined)) {
+  if (
+    typeof value === "object" &&
+    value !== null &&
+    (value.en !== undefined || value.id !== undefined)
+  ) {
     return value[curLang] || value.en || key;
   }
   return value;
@@ -57,7 +61,9 @@ function renderExperience() {
       dutiesHtml += `<li>${t(dutyKey)}</li>`;
     }
 
-    let tagsHtml = tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+    let tagsHtml = tags
+      .map((tag) => `<span class="tag">${tag}</span>`)
+      .join("");
 
     html += `
       <div class="exp-card">
@@ -90,7 +96,8 @@ function initLangButtons() {
   });
   document.documentElement.setAttribute("data-lang", curLang);
   document.getElementById("cv-download").href = "cv.html?lang=" + curLang;
-  document.getElementById("hero-avatar").style.display = curLang === "id" ? "block" : "none";
+  document.getElementById("hero-avatar").style.display =
+    curLang === "id" ? "block" : "none";
 }
 
 function setLang(lang) {
