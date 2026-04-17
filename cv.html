@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CV - Moh. Arif Yahya</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',Arial,sans-serif;font-size:11pt;line-height:1.5;color:#333;max-width:800px;margin:0 auto;padding:40px 50px;}
+  .header{text-align:center;margin-bottom:30px;padding-bottom:20px;border-bottom:2px solid #3b82f6;}
+  .name{font-size:24pt;font-weight:bold;color:#1e293b;}
+  .title{font-size:12pt;color:#3b82f6;margin:5px 0;}
+  .contact{font-size:10pt;color:#64748b;margin-top:8px;}
+  .contact span{margin:0 10px;}
+  h2{font-size:12pt;color:#3b82f6;text-transform:uppercase;border-bottom:1px solid #e2e8f0;padding-bottom:5px;margin:25px 0 15px;}
+  .section{margin-bottom:20px;}
+  .job{margin-bottom:18px;}
+  .job-header{display:flex;justify-content:space-between;align-items:baseline;}
+  .job-title{font-weight:bold;color:#1e293b;}
+  .job-company{color:#3b82f6;}
+  .job-date{font-size:10pt;color:#64748b;}
+  .job-location{font-size:10pt;color:#64748b;}
+  ul{margin:8px 0;padding-left:20px;}
+  li{font-size:10pt;margin-bottom:4px;}
+  .skills-grid{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tag{background:#eff6ff;color:#3b82f6;padding:3px 10px;border-radius:12px;font-size:9pt;}
+  .education-item{display:flex;justify-content:space-between;}
+  .edu-school{font-weight:bold;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="name">Moh. Arif Yahya</div>
+  <div class="title">Back End Developer</div>
+  <div class="contact">
+    <span data-i18n="hero.location">Bandung, Indonesia</span> |
+    <span>maarifyahya@gmail.com</span> |
+    <span>+62 858 6068 0607</span> |
+    <span>github.com/marifyahya</span>
+  </div>
+</div>
+
+<h2 data-i18n="experience.summaryTitle">Summary</h2>
+<p data-i18n="about.text">Back-End Developer with over 5 years of experience...</p>
+
+<h2 data-i18n="experience.title">Work Experience</h2>
+<div id="cv-experience"></div>
+
+<h2 data-i18n="education.title">Education</h2>
+<div class="education-item">
+  <span class="edu-school" data-i18n="education.school">STMIK IKMI CIREBON</span>
+  <span data-i18n="education.info">Graduated February 2021</span>
+</div>
+<div style="margin-top:3px;" data-i18n="education.degree">Bachelor of Informatics Engineering</div>
+
+<h2 data-i18n="skills.title">Skills</h2>
+<div class="skills-grid" id="cv-skills"></div>
+
+<script src="translations.js"></script>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = urlParams.get('lang') || 'en';
+  document.documentElement.lang = lang;
+  document.querySelector('h2[data-i18n="experience.summaryTitle"]').textContent = lang === 'id' ? 'Ringkasan' : 'Summary';
+
+  function t(key) {
+    const keys = key.split('.');
+    let value = translations;
+    for (const k of keys) {
+      if (value === undefined || value === null) return key;
+      value = value[k];
+    }
+    if (value === undefined || value === null) return key;
+    if (typeof value === 'object' && value !== null && (value.en !== undefined || value.id !== undefined)) {
+      return value[lang] || value.en || key;
+    }
+    return value;
+  }
+
+  function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (el.tagName !== 'H2') {
+        el.textContent = t(key);
+      }
+    });
+  }
+
+  function renderCV() {
+    const expContainer = document.getElementById('cv-experience');
+    const skillsContainer = document.getElementById('cv-skills');
+
+    let expHtml = '';
+    translations.experience.jobs.forEach((job, i) => {
+      const title = t(`experience.jobs.${i}.title`);
+      const period = t(`experience.jobs.${i}.period`);
+      let dutiesHtml = job.duties.map((duty, j) => `<li>${t(`experience.jobs.${i}.duties.${j}`)}</li>`).join('');
+      expHtml += `
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <span class="job-title">${title}</span> · <span class="job-company">${job.company}</span>
+            </div>
+            <span class="job-date">${period}</span>
+          </div>
+          <div class="job-location">${job.location}</div>
+          <ul>${dutiesHtml}</ul>
+        </div>
+      `;
+    });
+    expContainer.innerHTML = expHtml;
+
+    let skillsHtml = translations.skills.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('');
+    skillsContainer.innerHTML = skillsHtml;
+  }
+
+  applyTranslations();
+  renderCV();
+</script>
+</body>
+</html>

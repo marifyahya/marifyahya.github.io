@@ -18,20 +18,20 @@
     </button>
     <div class="nav-items-wrapper">
       <ul class="nav-links">
-        <li><a href="#about" data-en="About" data-id="Tentang">About</a></li>
-        <li><a href="#skills" data-en="Skills" data-id="Keahlian">Skills</a></li>
-        <li><a href="#experience" data-en="Experience" data-id="Pengalaman">Experience</a></li>
-        <li><a href="#education" data-en="Education" data-id="Pendidikan">Education</a></li>
-        <li><a href="#contact" data-en="Contact" data-id="Kontak">Contact</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#education" data-i18n="nav.education">Education</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
         <button class="lang-btn" onclick="setLang('id')">ID</button>
       </div>
-      <!-- NEW: Single Theme Toggle Icon -->
       <div class="theme-toggle">
         <button class="theme-btn" id="theme-toggle-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
-      </div>    </div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -41,9 +41,9 @@
     <div class="hero-inner fade">
       <div class="hero-avatar" id="hero-avatar"><img src="1776394024748.png" alt="Profile" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
       <div class="hero-text">
-        <h1><span data-en="Hi, I'm Moh. Arif Yahya 👋" data-id="Halo, Saya Moh. Arif Yahya 👋">Hi, I'm Moh. Arif Yahya 👋</span></h1>
-        <p class="hero-sub" data-en="Experienced Back-End Developer" data-id="Back-End Developer Berpengalaman">Experienced Back-End Developer</p>
-        <p class="hero-desc" data-en="Microservices • 5+ years experience in building scalable APIs." data-id="Microservices • Pengalaman 5+ tahun dalam membangun API yang scalable.">Microservices • 5+ years experience in building scalable APIs.</p>
+        <h1><span data-i18n="hero.title">Hi, I'm Moh. Arif Yahya 👋</span></h1>
+        <p class="hero-sub" data-i18n="hero.subtitle">Experienced Back-End Developer</p>
+        <p class="hero-desc" data-i18n="hero.description">Microservices • 5+ years experience in building scalable APIs.</p>
         <div class="hero-skills">
           <i class="fa-brands fa-php" data-tooltip="PHP"></i>
           <i class="fa-brands fa-laravel" data-tooltip="Laravel"></i>
@@ -54,11 +54,11 @@
           <i class="fa-brands fa-aws" data-tooltip="AWS"></i>
           <i class="fa-brands fa-git-alt" data-tooltip="Git"></i>
         </div>
-        <p class="hero-loc"><i class="fa-solid fa-location-dot"></i>Bandung, Indonesia</p>
+        <p class="hero-loc"><i class="fa-solid fa-location-dot"></i><span data-i18n="hero.location">Bandung, Indonesia</span></p>
         <div class="btn-group">
-          <a href="cv-ats-en.html" id="cv-download" class="btn btn-primary" data-en="Download Resume" data-id="Unduh Resume">Download Resume</a>
-          <a href="#experience" class="btn btn-outline" data-en="View Experience" data-id="Lihat Pengalaman">View Experience</a>
-          <a href="#contact" class="btn btn-outline" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</a>
+          <a href="cv.html?lang=en" id="cv-download" class="btn btn-primary" data-i18n="hero.downloadResume">Download Resume</a>
+          <a href="#experience" class="btn btn-outline" data-i18n="hero.viewExperience">View Experience</a>
+          <a href="#contact" class="btn btn-outline" data-i18n="hero.contactMe">Contact Me</a>
         </div>
       </div>
     </div>
@@ -68,18 +68,16 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="container fade">
-    <div class="section-title" data-en="About Me" data-id="Tentang Saya">About Me</div>
+    <div class="section-title" data-i18n="about.title">About Me</div>
     <div class="section-line"></div>
-    <p class="about-text" data-en="Back-End Developer with over 5 years of experience in the IT industry, specializing in building scalable systems with Laravel. Proven expertise in developing RESTful APIs within microservices architectures, integrating payment gateways, and automating business processes. Adept at collaborating in Agile environments and bridging the gap between product requirements and technical execution." data-id="Back-End Developer dengan pengalaman lebih dari 5 tahun di industri IT, spesialis dalam membangun sistem yang scalable menggunakan Laravel. Memiliki keahlian teruji dalam pengembangan RESTful API dengan arsitektur microservices, integrasi payment gateway, dan otomasi proses bisnis. Terbiasa bekerja dalam lingkungan Agile serta mampu menjembatani kebutuhan produk dengan eksekusi teknis yang efisien.">
-      Back-End Developer with over 5 years of experience in the IT industry, specializing in building scalable systems with Laravel. Proven expertise in developing RESTful APIs within microservices architectures, integrating payment gateways, and automating business processes. Adept at collaborating in Agile environments and bridging the gap between product requirements and technical execution.
-    </p>
+    <p class="about-text" data-i18n="about.text">Back-End Developer with over 5 years of experience...</p>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
   <div class="container fade">
-    <div class="section-title" data-en="Skills" data-id="Keahlian">Skills</div>
+    <div class="section-title" data-i18n="skills.title">Skills</div>
     <div class="section-line"></div>
     <div class="skills-grid">
       <div class="skill-category">
@@ -131,103 +129,23 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="container fade">
-    <div class="section-title" data-en="Work Experience" data-id="Pengalaman Kerja">Work Experience</div>
+    <div class="section-title" data-i18n="experience.title">Work Experience</div>
     <div class="section-line"></div>
-    <div class="exp-list">
-
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title" data-en="Back End Developer" data-id="Back End Developer">Back End Developer</div>
-            <div class="exp-company">PT Gajicermat Mandiri Digital Indonesia</div>
-            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Bandung</div>
-          </div>
-          <div class="exp-year" data-en="June 2022 – Present" data-id="Juni 2022 – Sekarang">June 2022 – Present</div>
-        </div>
-        <ul class="exp-duties">
-          <li data-en="<b>API & Microservices:</b> Developed and maintained robust RESTful APIs using PHP and Laravel within a microservices architecture to ensure high system scalability." data-id="<b>API & Microservices:</b> Mengembangkan dan memelihara RESTful API yang kuat menggunakan PHP dan Laravel dalam arsitektur microservices untuk memastikan skalabilitas sistem yang tinggi."><b>API & Microservices:</b> Developed and maintained robust RESTful APIs using PHP and Laravel within a microservices architecture to ensure high system scalability.</li>
-          <li data-en="<b>System Engineering:</b> Designed and implemented new backend services while debugging and enhancing existing ones to improve system performance." data-id="<b>System Engineering:</b> Merancang dan mengimplementasikan layanan backend baru sambil memperbaiki dan meningkatkan yang sudah ada untuk meningkatkan performa sistem."><b>System Engineering:</b> Designed and implemented new backend services while debugging and enhancing existing ones to improve system performance.</li>
-          <li data-en="<b>Agile Execution:</b> Actively participated in Scrum ceremonies and translated Product Requirement Documents (PRD) into detailed, actionable technical tasks in Jira." data-id="<b>Agile Execution:</b> Aktif berpartisipasi dalam Scrum ceremonies dan menerjemahkan Product Requirement Documents (PRD) menjadi tugas teknis yang terperinci dan dapat ditindaklanjuti di Jira."><b>Agile Execution:</b> Actively participated in Scrum ceremonies and translated Product Requirement Documents (PRD) into detailed, actionable technical tasks in Jira.</li>
-          <li data-en="<b>Quality & Documentation:</b> Wrote unit tests to ensure code reliability and created interactive API documentation using Swagger for seamless cross-team integration." data-id="<b>Quality & Documentation:</b> Menulis unit test untuk memastikan keandalan kode dan membuat dokumentasi API interaktif menggunakan Swagger untuk integrasi lintas tim yang mulus."><b>Quality & Documentation:</b> Wrote unit tests to ensure code reliability and created interactive API documentation using Swagger for seamless cross-team integration.</li>
-          <li data-en="<b>Collaboration:</b> Supported the product team through design reviews and assisted the QA team during the testing process to ensure smooth production releases." data-id="<b>Collaboration:</b> Mendukung tim produk melalui design review dan membantu tim QA selama proses pengujian untuk memastikan rilis production yang lancar."><b>Collaboration:</b> Supported the product team through design reviews and assisted the QA team during the testing process to ensure smooth production releases.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Microservices</span><span class="tag">REST API</span><span class="tag">Swagger</span><span class="tag">Jira</span><span class="tag">Scrum</span>
-        </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title" data-en="Freelance Back End Developer" data-id="Freelance Back End Developer">Freelance Back End Developer</div>
-            <div class="exp-company">AELITE</div>
-            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
-          </div>
-          <div class="exp-year" data-en="Nov 2020 – Sep 2021" data-id="Nov 2020 – Sep 2021">Nov 2020 – Sep 2021</div>
-        </div>
-        <ul class="exp-duties">
-          <li data-en="<b>System Design:</b> Contributed to the design of complex business flows and database architectures for various web applications." data-id="<b>System Design:</b> Berkontribusi dalam desain alur bisnis kompleks dan arsitektur database untuk berbagai aplikasi web."><b>System Design:</b> Contributed to the design of complex business flows and database architectures for various web applications.</li>
-          <li data-en="<b>Feature Implementation:</b> Developed REST APIs using Laravel and integrated Payment Gateway systems for secure transaction processing." data-id="<b>Feature Implementation:</b> Mengembangkan REST API menggunakan Laravel dan mengintegrasikan sistem Payment Gateway untuk pemrosesan transaksi yang aman."><b>Feature Implementation:</b> Developed REST APIs using Laravel and integrated Payment Gateway systems for secure transaction processing.</li>
-          <li data-en="<b>Management Tools:</b> Built comprehensive web dashboards to provide management with real-time operational control." data-id="<b>Management Tools:</b> Membuat web dashboard yang komprehensif untuk memberikan kontrol operasional real-time kepada manajemen."><b>Management Tools:</b> Built comprehensive web dashboards to provide management with real-time operational control.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">Laravel</span><span class="tag">REST API</span><span class="tag">Payment Gateway</span><span class="tag">Dashboard</span>
-        </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title" data-en="Full Stack Developer" data-id="Full Stack Developer">Full Stack Developer</div>
-            <div class="exp-company">PT Toyamilindo</div>
-            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
-          </div>
-          <div class="exp-year" data-en="Dec 2018 – May 2020" data-id="Des 2018 – Mei 2020">Dec 2018 – May 2020</div>
-        </div>
-        <ul class="exp-duties">
-          <li data-en="<b>System Modernization:</b> Led the migration of legacy PHP Native applications to the Laravel framework, enhancing security and maintainability." data-id="<b>System Modernization:</b> Memimpin migrasi aplikasi PHP Native lama ke framework Laravel, meningkatkan keamanan dan kemampuan pemeliharaan."><b>System Modernization:</b> Led the migration of legacy PHP Native applications to the Laravel framework, enhancing security and maintainability.</li>
-          <li data-en="<b>Automation:</b> Automated daily sales report generation and email delivery, significantly reducing manual work for the Marketing Division." data-id="<b>Automation:</b> Mengotomatiskan pembuatan laporan penjualan harian dan pengiriman email, secara signifikan mengurangi pekerjaan manual untuk Divisi Marketing."><b>Automation:</b> Automated daily sales report generation and email delivery, significantly reducing manual work for the Marketing Division.</li>
-          <li data-en="<b>Full-Cycle Development:</b> Managed the full development lifecycle, from payment gateway integration to application deployment in production environments." data-id="<b>Full-Cycle Development:</b> Mengelola seluruh siklus pengembangan, dari integrasi payment gateway hingga deployment aplikasi di lingkungan production."><b>Full-Cycle Development:</b> Managed the full development lifecycle, from payment gateway integration to application deployment in production environments.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Vue.js</span><span class="tag">Full Stack</span><span class="tag">Payment Gateway</span><span class="tag">Automation</span>
-        </div>
-      </div>
-
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title" data-en="IT Support" data-id="IT Support">IT Support</div>
-            <div class="exp-company">CRONOS ERP</div>
-            <div class="exp-loc"><i class="fa-solid fa-location-dot"></i>Cirebon</div>
-          </div>
-          <div class="exp-year" data-en="Dec 2017 – Aug 2018" data-id="Des 2017 – Agu 2018">Dec 2017 – Aug 2018</div>
-        </div>
-        <ul class="exp-duties">
-          <li data-en="<b>Implementation & Training:</b> Introduced the Cronos ERP system to users, providing hands-on training and creating comprehensive user guides." data-id="<b>Implementation & Training:</b> Memperkenalkan sistem Cronos ERP kepada pengguna, memberikan pelatihan langsung dan membuat panduan pengguna yang komprehensif."><b>Implementation & Training:</b> Introduced the Cronos ERP system to users, providing hands-on training and creating comprehensive user guides.</li>
-          <li data-en="<b>Feedback Loop:</b> Collected user feedback and reported technical requirements to the development manager to drive system improvements." data-id="<b>Feedback Loop:</b> Mengumpulkan feedback pengguna dan melaporkan kebutuhan teknis kepada manajer pengembangan untuk mendorong peningkatan sistem."><b>Feedback Loop:</b> Collected user feedback and reported technical requirements to the development manager to drive system improvements.</li>
-          <li data-en="<b>Troubleshooting:</b> Resolved on-site application issues and ensured system stability for daily operations." data-id="<b>Troubleshooting:</b> Menyelesaikan masalah aplikasi di lokasi dan memastikan stabilitas sistem untuk operasi harian."><b>Troubleshooting:</b> Resolved on-site application issues and ensured system stability for daily operations.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="tag">ERP</span><span class="tag">IT Support</span><span class="tag">Documentation</span><span class="tag">User Training</span>
-        </div>
-      </div>
-
-    </div>
+    <div class="exp-list" id="experience-list"></div>
   </div>
 </section>
 
 <!-- EDUCATION -->
 <section id="education">
   <div class="container fade">
-    <div class="section-title" data-en="Education" data-id="Pendidikan">Education</div>
+    <div class="section-title" data-i18n="education.title">Education</div>
     <div class="section-line"></div>
     <div class="edu-card">
       <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
       <div>
-        <div class="edu-school">STMIK IKMI CIREBON</div>
-        <div class="edu-degree" data-en="Bachelor of Informatics Engineering" data-id="Sarjana Teknik Informatika">Bachelor of Informatics Engineering</div>
-        <div class="edu-info" data-en="Graduated February 2021 · Cirebon, Indonesia" data-id="Lulus Februari 2021 · Cirebon, Indonesia">Graduated February 2021 · Cirebon, Indonesia</div>
+        <div class="edu-school" data-i18n="education.school">STMIK IKMI CIREBON</div>
+        <div class="edu-degree" data-i18n="education.degree">Bachelor of Informatics Engineering</div>
+        <div class="edu-info" data-i18n="education.info">Graduated February 2021 · Cirebon, Indonesia</div>
       </div>
     </div>
   </div>
@@ -236,7 +154,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="container fade">
-    <div class="section-title" data-en="Contact" data-id="Kontak">Contact</div>
+    <div class="section-title" data-i18n="contact.title">Contact</div>
     <div class="section-line"></div>
     <div class="contact-links">
       <a href="mailto:maarifyahya@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i> maarifyahya@gmail.com</a>
@@ -247,10 +165,11 @@
   </div>
 </section>
 
-<footer>© 2026 Moh. Arif Yahya · <span data-en="Built with" data-id="Dibuat dengan">Built with</span> ❤️</footer>
+<footer>© 2026 Moh. Arif Yahya · <span data-i18n="footer.builtWith">Built with</span> ❤️</footer>
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
 
+<script src="translations.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
