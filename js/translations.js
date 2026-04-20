@@ -78,6 +78,10 @@ const translations = {
             id: "<b>Agile Execution:</b> Aktif berpartisipasi dalam Scrum ceremonies dan menerjemahkan Product Requirement Documents (PRD) menjadi tugas teknis yang terperinci dan dapat ditindaklanjuti di Jira.",
           },
           {
+            en: "<b>Code Review:</b> Performed consistent Pull Request (PR) reviews to ensure code maintainability, adherence to best practices, and knowledge sharing across the development team.",
+            id: "<b>Code Review:</b> Melakukan Pull Request (PR) reviews secara konsisten untuk memastikan maintainability kode, kepatuhan terhadap best practices, dan berbagi pengetahuan di seluruh tim pengembangan.",
+          },
+          {
             en: "<b>Quality &amp; Documentation:</b> Wrote unit tests to ensure code reliability and created interactive API documentation using Swagger for seamless cross-team integration.",
             id: "<b>Quality &amp; Documentation:</b> Menulis unit test untuk memastikan keandalan kode dan membuat dokumentasi API interaktif menggunakan Swagger untuk integrasi lintas tim yang mulus.",
           },
