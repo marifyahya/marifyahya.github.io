@@ -66,6 +66,10 @@ const translations = {
         period: { en: "June 2022 – Present", id: "Juni 2022 – Sekarang" },
         duties: [
           {
+            en: "<b>Technical &amp; Database Design:</b> Designed database schemas and technical logic flows (such as payment systems) to meet feature requirements from PRD.",
+            id: "<b>Technical &amp; Database Design:</b> Merancang skema database dan alur logika teknis (seperti sistem pembayaran) untuk memenuhi kebutuhan fitur dari PRD.",
+          },
+          {
             en: "<b>API &amp; Microservices:</b> Developed and maintained robust RESTful APIs using PHP and Laravel within a microservices architecture to ensure high system scalability.",
             id: "<b>API &amp; Microservices:</b> Mengembangkan dan memelihara RESTful API yang kuat menggunakan PHP dan Laravel dalam arsitektur microservices untuk memastikan skalabilitas sistem yang tinggi.",
           },
