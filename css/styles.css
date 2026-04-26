@@ -88,18 +88,28 @@ body {
 nav {
   background: var(--terminal-header);
   border-bottom: 1px solid var(--border);
-  padding: 0 20rem;
+  padding: 0 5rem; /* Default for mobile/small tablet */
   position: sticky;
   top: 0;
-  z-index: 999;
-  /* Higher z-index to stay above content */
+  z-index: 10000;
+  transform: translateZ(0); 
+  pointer-events: all !important;
+}
+
+@media (min-width: 1024px) {
+  nav { padding: 0 10rem; }
+}
+
+@media (min-width: 1440px) {
+  nav { padding: 0 20rem; }
 }
 
 .nav-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 60px; /* Slightly taller for better spacing */
+  gap: 1rem;
 }
 
 .nav-logo {
@@ -112,6 +122,8 @@ nav {
   display: flex;
   align-items: center;
   gap: 2rem;
+  position: relative;
+  z-index: 10001;
 }
 
 .nav-links {
@@ -147,7 +159,8 @@ nav {
   border-radius: 4px;
   cursor: pointer;
   position: relative;
-  z-index: 1001;
+  z-index: 10002;
+  pointer-events: auto !important;
 }
 
 .lang-btn.active {
@@ -158,8 +171,16 @@ nav {
 
 /* Section Common */
 section {
-  padding: 4rem 20rem;
+  padding: 4rem 5rem;
   border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 1024px) {
+  section { padding: 4rem 10rem; }
+}
+
+@media (min-width: 1440px) {
+  section { padding: 4rem 20rem; }
 }
 
 .container {

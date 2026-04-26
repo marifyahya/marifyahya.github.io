@@ -92,20 +92,46 @@ function applyTranslations() {
 
 function initLangButtons() {
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.textContent.toLowerCase() === curLang);
+    // Determine language from data-lang attribute or button text
+    const lang = btn.getAttribute("data-lang") || btn.textContent.toLowerCase();
+    
+    // Add event listener directly
+    btn.addEventListener("click", () => {
+      setLang(lang);
+    });
+
+    btn.classList.toggle("active", lang === curLang);
   });
+  
   document.documentElement.setAttribute("data-lang", curLang);
   document.getElementById("cv-download").href = "cv.html?lang=" + curLang;
+  
+  // Show avatar only in ID per user request
+  const avatar = document.getElementById("hero-avatar");
+  if (avatar) {
+    avatar.style.display = curLang === "id" ? "block" : "none";
+  }
 }
 
 function setLang(lang) {
   curLang = lang;
   localStorage.setItem("lang", lang);
+  
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.textContent.toLowerCase() === lang);
+    const btnLang = btn.getAttribute("data-lang") || btn.textContent.toLowerCase();
+    btn.classList.toggle("active", btnLang === lang);
   });
+  
   document.documentElement.setAttribute("data-lang", lang);
-  document.getElementById("cv-download").href = "cv.html?lang=" + lang;
+  const cvLink = document.getElementById("cv-download");
+  if (cvLink) cvLink.href = "cv.html?lang=" + lang;
+  
+  // Show avatar only in ID per user request
+  const avatar = document.getElementById("hero-avatar");
+  if (avatar) {
+    avatar.style.display = lang === "id" ? "block" : "none";
+  }
+  
   renderExperience();
   applyTranslations();
   closeMenu();
