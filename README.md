@@ -1,4 +1,4 @@
-# Moh. Arif Yahya | CV
+# Moh. Arif Yahya | Resume
 
 This repository contains the professional CV and portfolio of Moh. Arif Yahya.
 
