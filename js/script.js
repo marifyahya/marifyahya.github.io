@@ -149,38 +149,9 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", closeMenu);
 });
 
-let currentTheme = localStorage.getItem("theme") || "dark";
-
-function applyTheme(theme) {
-  const htmlEl = document.documentElement;
-  const themeToggleButton = document.getElementById("theme-toggle-btn");
-  const icon = themeToggleButton.querySelector("i");
-
-  if (theme === "dark") {
-    htmlEl.setAttribute("data-theme", "dark");
-    icon.classList.remove("fa-sun");
-    icon.classList.add("fa-moon");
-  } else {
-    htmlEl.removeAttribute("data-theme");
-    icon.classList.remove("fa-moon");
-    icon.classList.add("fa-sun");
-  }
-}
-
 function setTheme(theme) {
-  if (!theme) {
-    theme = currentTheme === "dark" ? "light" : "dark";
-  }
-  currentTheme = theme;
-  localStorage.setItem("theme", theme);
-  applyTheme(theme);
-  closeMenu();
+  // Theme toggle removed for fixed terminal theme
 }
-
-applyTheme(currentTheme);
-document
-  .getElementById("theme-toggle-btn")
-  .addEventListener("click", () => setTheme());
 
 renderExperience();
 applyTranslations();

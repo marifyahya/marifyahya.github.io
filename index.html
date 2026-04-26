@@ -7,178 +7,190 @@
   <title>Moh. Arif Yahya | Back-End Developer</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <div class="nav-logo" onclick="window.location.href='#hero'">&lt;Dev/&gt;</div>
-      <button class="hamburger-menu" aria-label="Toggle navigation" onclick="toggleMenu()">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="nav-items-wrapper">
-        <ul class="nav-links">
-          <li><a href="#about" data-i18n="nav.about">About</a></li>
-          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-          <li><a href="#education" data-i18n="nav.education">Education</a></li>
-          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-        </ul>
-        <div class="lang-toggle">
-          <button class="lang-btn active" onclick="setLang('en')">EN</button>
-          <button class="lang-btn" onclick="setLang('id')">ID</button>
-        </div>
-        <div class="theme-toggle">
-          <button class="theme-btn" id="theme-toggle-btn" aria-label="Toggle theme"><i
-              class="fa-solid fa-moon"></i></button>
-        </div>
+  <div class="terminal-container">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-title">marifyahya@terminal: ~</div>
+      </div>
+      <div class="terminal-body">
+        <nav>
+          <div class="nav-inner">
+            <div class="nav-logo" onclick="window.location.href='#hero'">&lt;Dev/&gt;</div>
+            <button class="hamburger-menu" aria-label="Toggle navigation" onclick="toggleMenu()">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-items-wrapper">
+              <ul class="nav-links">
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+                <li><a href="#education" data-i18n="nav.education">Education</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+              </ul>
+              <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('id')">ID</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- HERO -->
+        <section id="hero">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span class="command">whoami</span></div>
+            <div class="hero-inner">
+              <div class="hero-avatar" id="hero-avatar"><img src="images/1776394024748.png" alt="Profile"
+                  style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+              <div class="hero-text">
+                <h1><span data-i18n="hero.title">Hi, I'm Moh. Arif Yahya 👋</span></h1>
+                <p class="hero-sub" data-i18n="hero.subtitle">Experienced Back-End Developer</p>
+                <p class="hero-desc" data-i18n="hero.description">Microservices • 5+ years experience in building scalable
+                  APIs.</p>
+                <div class="hero-skills">
+                  <i class="fa-brands fa-php" data-tooltip="PHP"></i>
+                  <i class="fa-brands fa-laravel" data-tooltip="Laravel"></i>
+                  <i class="fa-solid fa-cubes" data-tooltip="Microservices"></i>
+                  <i class="fa-solid fa-database" data-tooltip="MySQL, PostgreSQL, MongoDB"></i>
+                  <i class="fa-solid fa-server" data-tooltip="REST API"></i>
+                  <i class="fa-brands fa-docker" data-tooltip="Docker"></i>
+                  <i class="fa-brands fa-aws" data-tooltip="AWS"></i>
+                  <i class="fa-brands fa-git-alt" data-tooltip="Git"></i>
+                </div>
+                <p class="hero-loc"><i class="fa-solid fa-location-dot"></i><span data-i18n="hero.location">Bandung,
+                    Indonesia</span></p>
+                <div class="btn-group">
+                  <a href="cv.html?lang=en" id="cv-download" class="btn btn-primary" data-i18n="hero.downloadResume">Download
+                    Resume</a>
+                  <a href="#experience" class="btn btn-outline" data-i18n="hero.viewExperience">View Experience</a>
+                  <a href="#contact" class="btn btn-outline" data-i18n="hero.contactMe">Contact Me</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span class="command">cat about_me.txt</span></div>
+            <div class="section-title" data-i18n="about.title">About Me</div>
+            <div class="section-line"></div>
+            <p class="about-text" data-i18n="about.text">Back-End Developer with over 5 years of experience...</p>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span class="command">ls --skills</span></div>
+            <div class="section-title" data-i18n="skills.title">Skills</div>
+            <div class="section-line"></div>
+            <div class="skills-grid">
+              <div class="skill-category">
+                <h3>Language & Framework</h3>
+                <div class="skill-cards-wrapper">
+                  <div class="skill-card"><i class="fa-brands fa-php"></i><span>PHP</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-laravel"></i><span>Laravel</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-vuejs"></i><span>Vue.js</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3>Database</h3>
+                <div class="skill-cards-wrapper">
+                  <div class="skill-card"><i class="fa-solid fa-database"></i><span>MySQL</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-database"></i><span>PostgreSQL</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-leaf"></i><span>MongoDB</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-bolt"></i><span>Redis</span></div>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3>Infrastructure & DevOps</h3>
+                <div class="skill-cards-wrapper">
+                  <div class="skill-card"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-server"></i><span>Nginx</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-aws"></i><span>AWS (EC2, RDS, S3)</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h3>Arsitektur & Metodologi</h3>
+                <div class="skill-cards-wrapper">
+                  <div class="skill-card"><i class="fa-solid fa-cubes"></i><span>Microservices</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-code"></i><span>RESTful API</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-file-code"></i><span>Swagger/OpenAPI</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-people-group"></i><span>Scrum</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-ticket"></i><span>Jira</span></div>
+                  <div class="skill-card"><i class="fa-brands fa-confluence"></i><span>Confluence</span></div>
+                  <div class="skill-card"><i class="fa-solid fa-vial"></i><span>Unit Testing (PHPUnit)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span class="command">history --experience</span></div>
+            <div class="section-title" data-i18n="experience.title">Work Experience</div>
+            <div class="section-line"></div>
+            <div class="exp-list" id="experience-list"></div>
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span class="command">cat education.log</span></div>
+            <div class="section-title" data-i18n="education.title">Education</div>
+            <div class="section-line"></div>
+            <div class="edu-card">
+              <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div>
+                <div class="edu-school" data-i18n="education.school">STMIK IKMI CIREBON</div>
+                <div class="edu-degree" data-i18n="education.degree">Bachelor of Informatics Engineering</div>
+                <div class="edu-info" data-i18n="education.info">Graduated February 2021 · Cirebon, Indonesia</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span class="command">ping contact</span></div>
+            <div class="section-title" data-i18n="contact.title">Contact</div>
+            <div class="section-line"></div>
+            <div class="contact-links">
+              <a href="mailto:maarifyahya@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i>
+                maarifyahya@gmail.com</a>
+              <a href="tel:+6285860680607" class="contact-item"><i class="fa-solid fa-phone"></i> +62 858 6068 0607</a>
+              <a href="https://github.com/marifyahya" target="_blank" class="contact-item"><i class="fa-brands fa-github"></i>
+                GitHub</a>
+              <a href="https://id.linkedin.com/in/marifyahya" target="_blank" class="contact-item"><i
+                  class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+          </div>
+        </section>
+
+        <footer>© 2026 Moh. Arif Yahya · <span data-i18n="footer.builtWith">Built with</span> ❤️</footer>
+
+        <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
+            class="fa-solid fa-arrow-up"></i></button>
       </div>
     </div>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="container">
-      <div class="hero-inner fade">
-        <div class="hero-avatar" id="hero-avatar"><img src="images/1776394024748.png" alt="Profile"
-            style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
-        <div class="hero-text">
-          <h1><span data-i18n="hero.title">Hi, I'm Moh. Arif Yahya 👋</span></h1>
-          <p class="hero-sub" data-i18n="hero.subtitle">Experienced Back-End Developer</p>
-          <p class="hero-desc" data-i18n="hero.description">Microservices • 5+ years experience in building scalable
-            APIs.</p>
-          <div class="hero-skills">
-            <i class="fa-brands fa-php" data-tooltip="PHP"></i>
-            <i class="fa-brands fa-laravel" data-tooltip="Laravel"></i>
-            <i class="fa-solid fa-cubes" data-tooltip="Microservices"></i>
-            <i class="fa-solid fa-database" data-tooltip="MySQL, PostgreSQL, MongoDB"></i>
-            <i class="fa-solid fa-server" data-tooltip="REST API"></i>
-            <i class="fa-brands fa-docker" data-tooltip="Docker"></i>
-            <i class="fa-brands fa-aws" data-tooltip="AWS"></i>
-            <i class="fa-brands fa-git-alt" data-tooltip="Git"></i>
-          </div>
-          <p class="hero-loc"><i class="fa-solid fa-location-dot"></i><span data-i18n="hero.location">Bandung,
-              Indonesia</span></p>
-          <div class="btn-group">
-            <a href="cv.html?lang=en" id="cv-download" class="btn btn-primary" data-i18n="hero.downloadResume">Download
-              Resume</a>
-            <a href="#experience" class="btn btn-outline" data-i18n="hero.viewExperience">View Experience</a>
-            <a href="#contact" class="btn btn-outline" data-i18n="hero.contactMe">Contact Me</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container fade">
-      <div class="section-title" data-i18n="about.title">About Me</div>
-      <div class="section-line"></div>
-      <p class="about-text" data-i18n="about.text">Back-End Developer with over 5 years of experience...</p>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container fade">
-      <div class="section-title" data-i18n="skills.title">Skills</div>
-      <div class="section-line"></div>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Language & Framework</h3>
-          <div class="skill-cards-wrapper">
-            <div class="skill-card"><i class="fa-brands fa-php"></i><span>PHP</span></div>
-            <div class="skill-card"><i class="fa-brands fa-laravel"></i><span>Laravel</span></div>
-            <div class="skill-card"><i class="fa-brands fa-python"></i><span>Python</span></div>
-            <div class="skill-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
-            <div class="skill-card"><i class="fa-brands fa-vuejs"></i><span>Vue.js</span></div>
-            <div class="skill-card"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
-            <div class="skill-card"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Database</h3>
-          <div class="skill-cards-wrapper">
-            <div class="skill-card"><i class="fa-solid fa-database"></i><span>MySQL</span></div>
-            <div class="skill-card"><i class="fa-solid fa-database"></i><span>PostgreSQL</span></div>
-            <div class="skill-card"><i class="fa-solid fa-leaf"></i><span>MongoDB</span></div>
-            <div class="skill-card"><i class="fa-solid fa-bolt"></i><span>Redis</span></div>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Infrastructure & DevOps</h3>
-          <div class="skill-cards-wrapper">
-            <div class="skill-card"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
-            <div class="skill-card"><i class="fa-solid fa-server"></i><span>Nginx</span></div>
-            <div class="skill-card"><i class="fa-brands fa-aws"></i><span>AWS (EC2, RDS, S3)</span></div>
-            <div class="skill-card"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Arsitektur & Metodologi</h3>
-          <div class="skill-cards-wrapper">
-            <div class="skill-card"><i class="fa-solid fa-cubes"></i><span>Microservices</span></div>
-            <div class="skill-card"><i class="fa-solid fa-code"></i><span>RESTful API</span></div>
-            <div class="skill-card"><i class="fa-solid fa-file-code"></i><span>Swagger/OpenAPI</span></div>
-            <div class="skill-card"><i class="fa-solid fa-people-group"></i><span>Scrum</span></div>
-            <div class="skill-card"><i class="fa-solid fa-ticket"></i><span>Jira</span></div>
-            <div class="skill-card"><i class="fa-brands fa-confluence"></i><span>Confluence</span></div>
-            <div class="skill-card"><i class="fa-solid fa-vial"></i><span>Unit Testing (PHPUnit)</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container fade">
-      <div class="section-title" data-i18n="experience.title">Work Experience</div>
-      <div class="section-line"></div>
-      <div class="exp-list" id="experience-list"></div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="container fade">
-      <div class="section-title" data-i18n="education.title">Education</div>
-      <div class="section-line"></div>
-      <div class="edu-card">
-        <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div>
-          <div class="edu-school" data-i18n="education.school">STMIK IKMI CIREBON</div>
-          <div class="edu-degree" data-i18n="education.degree">Bachelor of Informatics Engineering</div>
-          <div class="edu-info" data-i18n="education.info">Graduated February 2021 · Cirebon, Indonesia</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container fade">
-      <div class="section-title" data-i18n="contact.title">Contact</div>
-      <div class="section-line"></div>
-      <div class="contact-links">
-        <a href="mailto:maarifyahya@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i>
-          maarifyahya@gmail.com</a>
-        <a href="tel:+6285860680607" class="contact-item"><i class="fa-solid fa-phone"></i> +62 858 6068 0607</a>
-        <a href="https://github.com/marifyahya" target="_blank" class="contact-item"><i class="fa-brands fa-github"></i>
-          GitHub</a>
-        <a href="https://id.linkedin.com/in/marifyahya" target="_blank" class="contact-item"><i
-            class="fa-brands fa-linkedin"></i> LinkedIn</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>© 2026 Moh. Arif Yahya · <span data-i18n="footer.builtWith">Built with</span> ❤️</footer>
-
-  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
-      class="fa-solid fa-arrow-up"></i></button>
+  </div>
 
   <script src="js/translations.js?v=2"></script>
   <script src="js/script.js?v=2"></script>
