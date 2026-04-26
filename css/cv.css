@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 11pt;
@@ -12,30 +13,36 @@ body {
   margin: 0 auto;
   padding: 40px 50px;
 }
+
 .header {
   text-align: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
   border-bottom: 2px solid #3b82f6;
 }
+
 .name {
   font-size: 24pt;
   font-weight: bold;
   color: #1e293b;
 }
+
 .title {
   font-size: 12pt;
   color: #3b82f6;
   margin: 5px 0;
 }
+
 .contact {
   font-size: 10pt;
   color: #64748b;
   margin-top: 8px;
 }
+
 .contact span {
   margin: 0 10px;
 }
+
 h2 {
   font-size: 12pt;
   color: #3b82f6;
@@ -44,45 +51,56 @@ h2 {
   padding-bottom: 5px;
   margin: 25px 0 15px;
 }
+
 .section {
   margin-bottom: 20px;
 }
+
 .job {
   margin-bottom: 18px;
 }
+
 .job-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
+
 .job-title {
   font-weight: bold;
   color: #1e293b;
 }
+
 .job-company {
   color: #3b82f6;
 }
+
 .job-date {
   font-size: 10pt;
   color: #64748b;
 }
+
 .job-location {
   font-size: 10pt;
   color: #64748b;
 }
+
 ul {
   margin: 8px 0;
   padding-left: 20px;
 }
+
 li {
   font-size: 10pt;
   margin-bottom: 4px;
 }
+
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
+
 .skill-tag {
   background: #eff6ff;
   color: #3b82f6;
@@ -90,10 +108,12 @@ li {
   border-radius: 12px;
   font-size: 9pt;
 }
+
 .education-item {
   display: flex;
   justify-content: space-between;
 }
+
 .edu-school {
   font-weight: bold;
 }

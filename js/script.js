@@ -96,8 +96,6 @@ function initLangButtons() {
   });
   document.documentElement.setAttribute("data-lang", curLang);
   document.getElementById("cv-download").href = "cv.html?lang=" + curLang;
-  document.getElementById("hero-avatar").style.display =
-    curLang === "id" ? "block" : "none";
 }
 
 function setLang(lang) {
@@ -108,8 +106,6 @@ function setLang(lang) {
   });
   document.documentElement.setAttribute("data-lang", lang);
   document.getElementById("cv-download").href = "cv.html?lang=" + lang;
-  document.getElementById("hero-avatar").style.display =
-    lang === "id" ? "block" : "none";
   renderExperience();
   applyTranslations();
   closeMenu();
