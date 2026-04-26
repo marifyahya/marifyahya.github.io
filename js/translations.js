@@ -39,6 +39,7 @@ const translations = {
       "Python",
       "JavaScript",
       "Vue.js",
+      "Go",
       "MySQL",
       "PostgreSQL",
       "MongoDB",

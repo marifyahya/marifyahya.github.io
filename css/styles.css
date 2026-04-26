@@ -90,7 +90,7 @@ body {
 nav {
   background: var(--terminal-header);
   border-bottom: 1px solid var(--border);
-  padding: 0 12rem;
+  padding: 0 20rem;
 }
 
 .nav-inner {
@@ -154,7 +154,7 @@ nav {
 
 /* Section Common */
 section {
-  padding: 4rem 12rem;
+  padding: 4rem 20rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -246,9 +246,12 @@ section {
 }
 
 .hero-loc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--muted);
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .btn-group {
@@ -291,63 +294,84 @@ section {
 /* About Section */
 .about-text {
   color: var(--terminal-text);
-  max-width: 800px;
+  max-width: 850px;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
-/* Skills Section */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+/* Skills Section Redesign */
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.skill-category {
+.skill-group {
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: 4px;
+  padding: 1.2rem;
   background: rgba(255, 255, 255, 0.02);
 }
 
-.skill-category h3 {
-  font-size: 1rem;
+.group-header {
+  font-size: 0.9rem;
   color: var(--terminal-blue);
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+  border-bottom: 1px solid var(--border);
+  display: inline-block;
+  padding-bottom: 4px;
 }
 
-.skill-cards-wrapper {
+.skill-items {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.8rem;
 }
 
-.skill-card {
-  border: 1px solid var(--border);
-  padding: 8px;
+.skill-item {
+  font-size: 0.85rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border-radius: 4px;
+  gap: 0.8rem;
+  color: var(--terminal-text);
 }
 
-.skill-card i {
+.skill-item i {
   color: var(--terminal-green);
-  margin-bottom: 5px;
+  font-size: 1.5rem;
+  width: 30px;
+  text-align: center;
 }
 
-.skill-card span {
-  font-size: 0.7rem;
+.skill-item .status {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: auto;
+  opacity: 0.8;
+}
+
+.skill-item:hover .status {
+  color: var(--terminal-green);
+  opacity: 1;
 }
 
 /* Experience Section */
 .exp-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .exp-card {
   border-left: 2px solid var(--terminal-green);
-  padding-left: 1.5rem;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.exp-card:last-child {
+  border-bottom: none;
 }
 
 .exp-header {
@@ -374,23 +398,35 @@ section {
 }
 
 .exp-loc {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .exp-duties {
   list-style: none;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .exp-duties li {
-  font-size: 0.85rem;
-  margin-bottom: 5px;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--terminal-text);
+  padding-left: 1.5rem;
+  position: relative;
 }
 
 .exp-duties li::before {
-  content: "$ ";
+  content: "$";
+  position: absolute;
+  left: 0;
   color: var(--terminal-green);
+  font-weight: bold;
 }
 
 .exp-tags {
@@ -401,10 +437,10 @@ section {
 }
 
 .tag {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   background: var(--terminal-header);
   border: 1px solid var(--border);
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: 4px;
   color: var(--terminal-blue);
 }
@@ -412,7 +448,8 @@ section {
 /* Education Section */
 .edu-card {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  align-items: flex-start;
 }
 
 .edu-icon {
@@ -420,9 +457,22 @@ section {
   font-size: 1.5rem;
 }
 
-.edu-school { font-weight: bold; }
-.edu-degree { color: var(--terminal-green); font-size: 0.9rem; }
-.edu-info { color: var(--muted); font-size: 0.8rem; }
+.edu-school { 
+  font-weight: bold; 
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.edu-degree { 
+  color: var(--terminal-green); 
+  font-size: 0.95rem; 
+  margin-bottom: 0.2rem;
+}
+
+.edu-info { 
+  color: var(--muted); 
+  font-size: 0.85rem; 
+}
 
 /* Contact Section */
 .contact-links {
