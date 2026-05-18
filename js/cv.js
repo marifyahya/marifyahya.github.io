@@ -57,8 +57,49 @@ function renderCV() {
   });
   expContainer.innerHTML = expHtml;
 
-  let skillsHtml = translations.skills.tags
-    .map((tag) => `<span class="skill-tag">${tag}</span>`)
+  const skillGroups = [
+    {
+      title: "Language & Framework",
+      items: [
+        "PHP",
+        "Laravel",
+        "Node.js",
+        "Express.js",
+        "Python",
+        "JavaScript",
+        "Vue.js",
+        "HTML",
+        "CSS",
+        "Go",
+      ],
+    },
+    {
+      title: "Database",
+      items: ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
+    },
+    {
+      title: "Infrastructure & DevOps",
+      items: ["Docker", "Nginx", "AWS", "Git"],
+    },
+    {
+      title: "Architecture & Methodology",
+      items: ["Microservices", "RESTful API", "Swagger", "Scrum"],
+    },
+  ];
+
+  let skillsHtml = skillGroups
+    .map(
+      (group) => `
+        <div class="skill-group">
+          <div class="skill-group-title">${group.title}</div>
+          <div class="skill-tags">
+            ${group.items
+              .map((tag) => `<span class="skill-tag">${tag}</span>`)
+              .join("")}
+          </div>
+        </div>
+      `
+    )
     .join("");
   skillsContainer.innerHTML = skillsHtml;
 }
