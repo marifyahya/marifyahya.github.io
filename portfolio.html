@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Moh. Arif Yahya</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
+</head>
+
+<body>
+
+  <div class="terminal-container">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-title">marifyahya@portfolio: ~</div>
+      </div>
+      <nav>
+        <div class="nav-inner">
+          <div class="nav-logo" onclick="window.location.href='index.html'">&lt;Dev/&gt;</div>
+          <button class="hamburger-menu" aria-label="Toggle navigation" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="nav-items-wrapper">
+            <ul class="nav-links">
+              <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+              <li><a href="index.html#skills" data-i18n="nav.skills">Skills</a></li>
+              <li><a href="index.html#experience" data-i18n="nav.experience">Experience</a></li>
+              <li><a href="index.html#education" data-i18n="nav.education">Education</a></li>
+              <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="lang-toggle">
+              <button class="lang-btn active" data-lang="en">EN</button>
+              <button class="lang-btn" data-lang="id">ID</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="terminal-body">
+
+        <!-- PORTFOLIO HEADER -->
+        <section id="portfolio-header">
+          <div class="container fade">
+            <div class="prompt"><span class="user">guest@marifyahya</span>:<span class="path">~</span>$ <span
+                class="command">ls -la projects/</span></div>
+            <div class="section-title" data-i18n="portfolio.title">Portfolio</div>
+            <div class="section-line"></div>
+            <p class="portfolio-intro" data-i18n="portfolio.intro">A collection of projects I've built</p>
+            <div class="btn-group" style="margin-top: 1.5rem;">
+              <a href="print-portfolio.html" target="_blank" class="btn btn-primary" id="download-pdf-btn" data-i18n="portfolio.downloadPdf">
+                <i class="fa-solid fa-file-pdf"></i> Download PDF
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- PORTFOLIO GRID -->
+        <section id="portfolio">
+          <div class="container">
+            <div class="portfolio-grid" id="portfolio-grid"></div>
+          </div>
+        </section>
+
+        <!-- IMAGE MODAL -->
+        <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+          <span class="close-modal">&times;</span>
+          <img class="modal-content" id="modalImage">
+        </div>
+
+        <footer>© 2026 Moh. Arif Yahya</footer>
+
+        <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
+            class="fa-solid fa-arrow-up"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/translations.js?v=10"></script>
+  <script src="js/script.js?v=10"></script>
+</body>
+
+</html>
