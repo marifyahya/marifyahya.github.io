@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Moh. Arif Yahya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #238636;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      margin: 0;
+      padding: 40px;
+      line-height: 1.6;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--primary);
+    }
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      color: var(--text-main);
+    }
+    .header p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    .project {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+    .project-content {
+      display: flex;
+      gap: 25px;
+      align-items: flex-start;
+    }
+    .project-info {
+      flex: 1;
+    }
+    .project-image-wrapper {
+      flex: 0 0 280px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px;
+      background: #f9fafb;
+    }
+    .project-image {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      display: block;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 15px;
+    }
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--primary);
+    }
+    .project-role {
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 5px 0;
+    }
+    .project-desc {
+      margin: 10px 0;
+    }
+    .project-challenge {
+      margin: 10px 0;
+      color: var(--text-main);
+    }
+    .project-link {
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
+    .project-link a {
+      color: var(--primary);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .project-tags {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      background: #f3f4f6;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #374151;
+      font-weight: 500;
+    }
+    @media print {
+      body {
+        padding: 0;
+      }
+      @page {
+        margin: 2cm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1 id="doc-title">Portfolio</h1>
+    <p id="doc-subtitle">Moh. Arif Yahya - Back-End Developer</p>
+  </div>
+
+  <div id="projects-container"></div>
+
+  <script src="js/translations.js?v=11"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("preferredLanguage") || "en";
+      const trans = typeof translations !== 'undefined' ? translations : null;
+      
+      if(lang === 'id') {
+        document.getElementById('doc-subtitle').textContent = "Moh. Arif Yahya - Pengembang Back-End";
+      }
+
+      const container = document.getElementById("projects-container");
+      if (!trans || !trans.portfolio || !trans.portfolio.projects) return;
+
+      const projects = [...trans.portfolio.projects].reverse();
+      let html = "";
+
+      projects.forEach((proj, index) => {
+        const title = proj.title[lang] || proj.title.en;
+        const role = proj.role ? (proj.role[lang] || proj.role.en) : "";
+        const desc = proj.description ? (proj.description[lang] || proj.description.en) : "";
+        const chal = proj.challenge ? (proj.challenge[lang] || proj.challenge.en) : "";
+        const tags = proj.tags || [];
+
+        let tagsHtml = tags.map(t => `<span class="tag">${t}</span>`).join("");
+
+        html += `
+          <div class="project">
+            <div class="project-header">
+              <h2 class="project-title">${index + 1}. ${title}</h2>
+            </div>
+            <div class="project-content">
+              <div class="project-info">
+                <div class="project-desc">${desc}</div>
+                ${role ? `<div class="project-role"><strong>Role:</strong> ${role}</div>` : ""}
+                ${chal ? `<div class="project-challenge"><strong>Challenge:</strong> ${chal}</div>` : ""}
+                ${proj.link ? `<div class="project-link"><strong>Link:</strong> <a href="${proj.link}" target="_blank">${proj.link}</a></div>` : ""}
+                <div class="project-tags">${tagsHtml}</div>
+              </div>
+              <div class="project-image-wrapper">
+                <img src="${proj.image || 'images/projects/placeholder.svg'}" alt="${title}" class="project-image" />
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+
+      // Automatically trigger print after a short delay to ensure rendering
+      setTimeout(() => {
+        window.print();
+      }, 500);
+    });
+  </script>
+</body>
+</html>

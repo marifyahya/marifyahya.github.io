@@ -10,7 +10,10 @@ const obs = new IntersectionObserver(
   { threshold: 0.12 },
 );
 els.forEach((el) => obs.observe(el));
-document.querySelector("#hero .fade").classList.add("show");
+const heroFade = document.querySelector("#hero .fade");
+if (heroFade) heroFade.classList.add("show");
+const portfolioHeaderFade = document.querySelector("#portfolio-header .fade");
+if (portfolioHeaderFade) portfolioHeaderFade.classList.add("show");
 
 let lastScroll = 0;
 window.addEventListener("scroll", () => {
@@ -104,7 +107,8 @@ function initLangButtons() {
   });
   
   document.documentElement.setAttribute("data-lang", curLang);
-  document.getElementById("cv-download").href = "cv.html?lang=" + curLang;
+  const cvLink = document.getElementById("cv-download");
+  if (cvLink) cvLink.href = "cv.html?lang=" + curLang;
   
   // Show avatar only in ID per user request
   const avatar = document.getElementById("hero-avatar");
@@ -133,6 +137,7 @@ function setLang(lang) {
   }
   
   renderExperience();
+  renderPortfolio();
   applyTranslations();
   closeMenu();
 }
@@ -175,6 +180,64 @@ function setTheme(theme) {
   // Theme toggle removed for fixed terminal theme
 }
 
+function renderPortfolio() {
+  const container = document.getElementById("portfolio-grid");
+  if (!container || !translations.portfolio) return;
+
+  const projects = translations.portfolio.projects;
+  let html = "";
+  for (let i = projects.length - 1; i >= 0; i--) {
+    const project = projects[i];
+    const title = t(`portfolio.projects.${i}.title`);
+    const description = t(`portfolio.projects.${i}.description`);
+    const challenge = project.challenge ? t(`portfolio.projects.${i}.challenge`) : null;
+    const learningOutcomes = project.learningOutcomes ? t(`portfolio.projects.${i}.learningOutcomes`) : null;
+    const role = project.role ? t(`portfolio.projects.${i}.role`) : null;
+
+    let tagsHtml = project.tags
+      .map((tag) => `<span class="tag">${tag}</span>`)
+      .join("");
+
+    let extraInfoHtml = "";
+    if (role) extraInfoHtml += `<p class="portfolio-card-desc" style="margin-bottom: 0.2rem"><strong>Role:</strong> ${role}</p>`;
+    if (challenge) extraInfoHtml += `<p class="portfolio-card-desc"><strong>Challenge:</strong> ${challenge}</p>`;
+    if (learningOutcomes) extraInfoHtml += `<p class="portfolio-card-desc"><strong>Learning Outcomes:</strong> ${learningOutcomes}</p>`;
+
+    html += `
+      <div class="portfolio-card">
+        <div class="portfolio-card-img">
+          <img src="${project.image}" alt="${title}" loading="lazy" onclick="openImageModal(this.src)" onerror="this.parentElement.classList.add('img-fallback')">
+        </div>
+        <div class="portfolio-card-body">
+          <h3 class="portfolio-card-title">${title}</h3>
+          <p class="portfolio-card-desc" style="margin-bottom: 0.5rem">${description}</p>
+          ${extraInfoHtml}
+          <div class="portfolio-card-tags">${tagsHtml}</div>
+          ${project.link ? `<a href="${project.link}" target="_blank" class="btn btn-outline portfolio-card-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="portfolio.viewProject">View Project</span></a>` : ""}
+        </div>
+      </div>
+    `;
+  }
+  container.innerHTML = html;
+}
+
 renderExperience();
+renderPortfolio();
 applyTranslations();
 initLangButtons();
+
+function openImageModal(src) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  if (modal && modalImg) {
+    modalImg.src = src;
+    modal.classList.add("show");
+  }
+}
+
+function closeImageModal() {
+  const modal = document.getElementById("imageModal");
+  if (modal) {
+    modal.classList.remove("show");
+  }
+}
