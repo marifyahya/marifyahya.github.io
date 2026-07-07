@@ -97,7 +97,7 @@ function initLangButtons() {
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     // Determine language from data-lang attribute or button text
     const lang = btn.getAttribute("data-lang") || btn.textContent.toLowerCase();
-    
+
     // Add event listener directly
     btn.addEventListener("click", () => {
       setLang(lang);
@@ -105,11 +105,11 @@ function initLangButtons() {
 
     btn.classList.toggle("active", lang === curLang);
   });
-  
+
   document.documentElement.setAttribute("data-lang", curLang);
   const cvLink = document.getElementById("cv-download");
   if (cvLink) cvLink.href = "cv.html?lang=" + curLang;
-  
+
   // Show avatar only in ID per user request
   const avatar = document.getElementById("hero-avatar");
   if (avatar) {
@@ -120,22 +120,23 @@ function initLangButtons() {
 function setLang(lang) {
   curLang = lang;
   localStorage.setItem("lang", lang);
-  
+
   document.querySelectorAll(".lang-btn").forEach((btn) => {
-    const btnLang = btn.getAttribute("data-lang") || btn.textContent.toLowerCase();
+    const btnLang =
+      btn.getAttribute("data-lang") || btn.textContent.toLowerCase();
     btn.classList.toggle("active", btnLang === lang);
   });
-  
+
   document.documentElement.setAttribute("data-lang", lang);
   const cvLink = document.getElementById("cv-download");
   if (cvLink) cvLink.href = "cv.html?lang=" + lang;
-  
+
   // Show avatar only in ID per user request
   const avatar = document.getElementById("hero-avatar");
   if (avatar) {
     avatar.style.display = lang === "id" ? "block" : "none";
   }
-  
+
   renderExperience();
   renderPortfolio();
   applyTranslations();
@@ -190,8 +191,12 @@ function renderPortfolio() {
     const project = projects[i];
     const title = t(`portfolio.projects.${i}.title`);
     const description = t(`portfolio.projects.${i}.description`);
-    const challenge = project.challenge ? t(`portfolio.projects.${i}.challenge`) : null;
-    const learningOutcomes = project.learningOutcomes ? t(`portfolio.projects.${i}.learningOutcomes`) : null;
+    const challenge = project.challenge
+      ? t(`portfolio.projects.${i}.challenge`)
+      : null;
+    const learningOutcomes = project.learningOutcomes
+      ? t(`portfolio.projects.${i}.learningOutcomes`)
+      : null;
     const role = project.role ? t(`portfolio.projects.${i}.role`) : null;
 
     let tagsHtml = project.tags
@@ -199,9 +204,12 @@ function renderPortfolio() {
       .join("");
 
     let extraInfoHtml = "";
-    if (role) extraInfoHtml += `<p class="portfolio-card-desc" style="margin-bottom: 0.2rem"><strong>Role:</strong> ${role}</p>`;
-    if (challenge) extraInfoHtml += `<p class="portfolio-card-desc"><strong>Challenge:</strong> ${challenge}</p>`;
-    if (learningOutcomes) extraInfoHtml += `<p class="portfolio-card-desc"><strong>Learning Outcomes:</strong> ${learningOutcomes}</p>`;
+    if (role)
+      extraInfoHtml += `<p class="portfolio-card-desc" style="margin-bottom: 0.2rem"><strong>Role:</strong> ${role}</p>`;
+    if (challenge)
+      extraInfoHtml += `<p class="portfolio-card-desc"><strong>Challenge:</strong> ${challenge}</p>`;
+    if (learningOutcomes)
+      extraInfoHtml += `<p class="portfolio-card-desc"><strong>Learning Outcomes:</strong> ${learningOutcomes}</p>`;
 
     html += `
       <div class="portfolio-card">
@@ -241,3 +249,16 @@ function closeImageModal() {
     modal.classList.remove("show");
   }
 }
+
+// Visitor Counter Logic
+document.addEventListener("DOMContentLoaded", () => {
+  const visitedAt = localStorage.getItem("portfolio_visited_at");
+  const now = new Date().getTime();
+  const hours24 = 24 * 60 * 60 * 1000;
+
+  if (!visitedAt || now - parseInt(visitedAt) > hours24) {
+    fetch("https://api.counterapi.dev/v2/marifyahya/marifyahya-portofolio/up")
+      .then(() => localStorage.setItem("portfolio_visited_at", now.toString()))
+      .catch((err) => console.error("Error updating visitor counter:", err));
+  }
+});

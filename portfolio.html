@@ -51,7 +51,8 @@
             <div class="section-line"></div>
             <p class="portfolio-intro" data-i18n="portfolio.intro">A collection of projects I've built</p>
             <div class="btn-group" style="margin-top: 1.5rem;">
-              <a href="print-portfolio.html" target="_blank" class="btn btn-primary" id="download-pdf-btn" data-i18n="portfolio.downloadPdf">
+              <a href="print-portfolio.html" target="_blank" class="btn btn-primary" id="download-pdf-btn"
+                data-i18n="portfolio.downloadPdf">
                 <i class="fa-solid fa-file-pdf"></i> Download PDF
               </a>
             </div>
@@ -71,7 +72,14 @@
           <img class="modal-content" id="modalImage">
         </div>
 
-        <footer>© 2026 Moh. Arif Yahya</footer>
+        <footer>
+          <div style="margin-bottom: 10px;">
+            <a href="https://counterapi.dev">
+              <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.counterapi.dev%2Fv2%2Fmarifyahya%2Fmarifyahya-portofolio&query=%24.data.up_count&label=VISITORS&color=238636&labelColor=0d1117&style=flat-square" alt="Visitors" />
+            </a>
+          </div>
+          © 2026 Moh. Arif Yahya
+        </footer>
 
         <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
             class="fa-solid fa-arrow-up"></i></button>
