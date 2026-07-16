@@ -64,7 +64,7 @@ const translations = {
     jobs: [
       {
         title: { en: "Back End Developer", id: "Back End Developer" },
-        company: "PT Gajicermat Mandiri Digital Indonesia",
+        company: "PT RAKSASA KINERJA DIGITAL INDONESIA",
         location: "Bandung",
         period: { en: "June 2022 – Present", id: "Juni 2022 – Sekarang" },
         duties: [
